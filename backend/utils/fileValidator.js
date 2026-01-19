@@ -45,7 +45,76 @@ const FILE_TYPE_RULES = {
     'pdf-to-docx': ['.pdf'],
     'pdf-to-xlsx': ['.pdf'],
     'pdf-to-json': ['.pdf'],
-    'pdf-to-csv': ['.pdf']
+    'pdf-to-csv': ['.pdf'],
+    
+    // ==================== NEW CONVERSIONS (43) ====================
+    
+    // DOCX conversions (4)
+    'docx-to-txt': ['.docx', '.doc'],
+    'docx-to-html': ['.docx', '.doc'],
+    'docx-to-pptx': ['.docx', '.doc'],
+    'docx-to-xlsx': ['.docx', '.doc'],
+    
+    // PPTX conversions (3)
+    'pptx-to-txt': ['.pptx', '.ppt'],
+    'pptx-to-html': ['.pptx', '.ppt'],
+    'pptx-to-md': ['.pptx', '.ppt'],
+    
+    // TXT conversions (4)
+    'txt-to-docx': ['.txt'],
+    'txt-to-pdf': ['.txt'],
+    'txt-to-html': ['.txt'],
+    'txt-to-md': ['.txt'],
+    
+    // PDF conversions (1)
+    'pdf-to-html': ['.pdf'],
+    
+    // Markdown conversions (4)
+    'md-to-pdf': ['.md'],
+    'md-to-docx': ['.md'],
+    'md-to-odt': ['.md'],
+    'md-to-pptx': ['.md'],
+    
+    // XLSX conversions (4)
+    'xlsx-to-json': ['.xlsx', '.xls'],
+    'xlsx-to-xml': ['.xlsx', '.xls'],
+    'xlsx-to-html': ['.xlsx', '.xls'],
+    'xlsx-to-txt': ['.xlsx', '.xls'],
+    
+    // ODS conversions (3)
+    'ods-to-csv': ['.ods'],
+    'ods-to-html': ['.ods'],
+    'ods-to-txt': ['.ods'],
+    
+    // ODT conversions (4)
+    'odt-to-txt': ['.odt'],
+    'odt-to-html': ['.odt'],
+    'odt-to-md': ['.odt'],
+    'odt-to-pptx': ['.odt'],
+    
+    // CSV conversions (4)
+    'csv-to-xml': ['.csv'],
+    'csv-to-html': ['.csv'],
+    'csv-to-pdf': ['.csv'],
+    'csv-to-txt': ['.csv'],
+    
+    // JSON conversions (4)
+    'json-to-csv': ['.json'],
+    'json-to-xlsx': ['.json'],
+    'json-to-html': ['.json'],
+    'json-to-md': ['.json'],
+    
+    // XML conversions (4)
+    'xml-to-csv': ['.xml'],
+    'xml-to-xlsx': ['.xml'],
+    'xml-to-html': ['.xml'],
+    'xml-to-pdf': ['.xml'],
+    
+    // HTML conversions (4)
+    'html-to-docx': ['.html', '.htm'],
+    'html-to-txt': ['.html', '.htm'],
+    'html-to-xlsx': ['.html', '.htm'],
+    'html-to-csv': ['.html', '.htm']
 };
 
 /**

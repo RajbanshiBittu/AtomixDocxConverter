@@ -91,6 +91,74 @@ export default function ConversionPanel({ conversionType = "docx to pdf" }: Conv
       'pdf to xlsx': `${baseUrl}/pdf-to-office/pdf-to-xlsx`,
       'pdf to json': `${baseUrl}/pdf-to-office/pdf-to-json`,
       'pdf to csv': `${baseUrl}/pdf-to-office/pdf-to-csv`,
+
+      // Docx Conversion
+      'docx to txt': `${baseUrl}/comprehensive-conversion/docx-to-txt`,
+      'docx to html': `${baseUrl}/comprehensive-conversion/docx-to-html`,
+      'docx to pptx': `${baseUrl}/comprehensive-conversion/docx-to-pptx`,
+      'docx to xlsx': `${baseUrl}/comprehensive-conversion/docx-to-xlsx`, 
+
+      //PPTX Conversion
+      'pptx to txt': `${baseUrl}/comprehensive-conversion/pptx-to-txt`,
+      'pptx to html': `${baseUrl}/comprehensive-conversion/pptx-to-html`,
+      'pptx to md': `${baseUrl}/comprehensive-conversion/pptx-to-md`,
+
+      //TXT Conversion
+      'txt to docx': `${baseUrl}/comprehensive-conversion/txt-to-docx`,
+      'txt to pdf': `${baseUrl}/comprehensive-conversion/txt-to-pdf`,
+      'txt to html': `${baseUrl}/comprehensive-conversion/txt-to-html`,
+      'txt to md': `${baseUrl}/comprehensive-conversion/txt-to-md`,
+
+      //PDF Conversion
+      'pdf to html': `${baseUrl}/comprehensive-conversion/pdf-to-html`,
+
+      // Markdown Conversion
+      'md to pdf': `${baseUrl}/comprehensive-conversion/md-to-pdf`,
+      'md to docx': `${baseUrl}/comprehensive-conversion/md-to-docx`,
+      'md to odt': `${baseUrl}/comprehensive-conversion/md-to-odt`,
+      'md to pptx': `${baseUrl}/comprehensive-conversion/md-to-pptx`,
+
+      // XLSX Conversion
+      'xlsx to json': `${baseUrl}/comprehensive-conversion/xlsx-to-json`,
+      'xlsx to xml': `${baseUrl}/comprehensive-conversion/xlsx-to-xml`,
+      'xlsx to html': `${baseUrl}/comprehensive-conversion/xlsx-to-html`,
+      'xlsx to txt': `${baseUrl}/comprehensive-conversion/xlsx-to-txt`, 
+
+      // ODS Conversion
+      'ods to csv': `${baseUrl}/comprehensive-conversion/ods-to-csv`,
+      'ods to html': `${baseUrl}/comprehensive-conversion/ods-to-html`,
+      'ods to txt': `${baseUrl}/comprehensive-conversion/ods-to-txt`, 
+
+      // ODT Conversion
+      'odt to txt': `${baseUrl}/comprehensive-conversion/odt-to-txt`,
+      'odt to html': `${baseUrl}/comprehensive-conversion/odt-to-html`,
+      'odt to md': `${baseUrl}/comprehensive-conversion/odt-to-md`,
+      'odt to pptx': `${baseUrl}/comprehensive-conversion/odt-to-pptx`,
+
+      // CSV Conversion
+      'csv-to-xml': `${baseUrl}/comprehensive-conversion/csv-to-xml`,
+      'csv-to-html': `${baseUrl}/comprehensive-conversion/csv-to-html`,
+      'csv-to-pdf': `${baseUrl}/comprehensive-conversion/csv-to-pdf`,
+      'csv-to-txt': `${baseUrl}/comprehensive-conversion/csv-to-txt`,
+
+      // JSON Conversion
+      'json-to-csv': `${baseUrl}/comprehensive-conversion/json-to-csv`,
+      'json-to-xlsx': `${baseUrl}/comprehensive-conversion/json-to-xlsx`,
+      'json-to-html': `${baseUrl}/comprehensive-conversion/json-to-html`,
+      'json-to-md': `${baseUrl}/comprehensive-conversion/json-to-md`,
+
+      // XML Conversion
+      'xml-to-csv': `${baseUrl}/comprehensive-conversion/xml-to-csv`,
+      'xml-to-xlsx': `${baseUrl}/comprehensive-conversion/xml-to-xlsx`,
+      'xml-to-html': `${baseUrl}/comprehensive-conversion/xml-to-html`,
+      'xml-to-pdf': `${baseUrl}/comprehensive-conversion/xml-to-pdf`,
+
+      // HTML Conversion
+      'html to docx': `${baseUrl}/comprehensive-conversion/html-to-docx`,
+      'html to txt': `${baseUrl}/comprehensive-conversion/html-to-txt`,
+      'html to xlsx': `${baseUrl}/comprehensive-conversion/html-to-xlsx`,
+      'html to csv': `${baseUrl}/comprehensive-conversion/html-to-csv`,
+
     };
     
     return endpointMap[type.toLowerCase()] || endpointMap['docx to pdf'];

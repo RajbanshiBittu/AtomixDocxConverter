@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { DocumentIcon } from "@heroicons/react/24/outline";
 import ConversionPanel from "@/components/ConversionPanel";
+import { title } from "process";
 
 const formats = [
   // Office to PDF conversions
@@ -85,8 +86,6 @@ const formats = [
     title: "xml to json",
     description: "Convert XML data to JSON format."
   },
-  
-  // Text/Markdown conversions
   {
     icon: DocumentIcon,
     title: "text to md",
@@ -112,17 +111,12 @@ const formats = [
     title: "docx to md",
     description: "Convert Word documents to Markdown format."
   },
-  
-  // HTML to PDF conversion
   {
     icon: DocumentIcon,
     title: "html to pdf",
     description: "Convert HTML files to PDF format."
   },
-  
-  // Spreadsheet conversions
-  {
-    icon: DocumentIcon,
+  {    icon: DocumentIcon,
     title: "xlsx to csv",
     description: "Convert Excel spreadsheets to CSV format."
   },
@@ -161,6 +155,217 @@ const formats = [
     title: "pdf to csv",
     description: "Convert PDF files to CSV format."
   },
+
+  // // Docx Conversion
+  {
+    icon: DocumentIcon,
+    title: "docx to txt",
+    description: "Convert Word documents to plain text format."
+  },
+  {
+    icon: DocumentIcon,
+    title: "docx to html",
+    description: "Convert Word documents to HTML format."
+  },
+  {
+    icon: DocumentIcon,
+    title: "docx to pptx",
+    description: "Convert Word documents to PowerPoint presentations."
+  },
+  {
+    icon: DocumentIcon,
+    title: "docx to xlsx",
+    description: "Convert Word documents to Excel spreadsheets."
+  },
+
+  //     //PPTX Conversion
+  {
+    icon: DocumentIcon,
+    title: "pptx to text",
+    description: "Convert PowerPoint presentations to plain text format."
+  },
+  {
+    icon: DocumentIcon,
+    title: "pptx to html",
+    description: "Convert PowerPoint presentations to HTML format."
+  },
+  {
+    icon: DocumentIcon,
+    title: "pptx to md",
+    description: "Convert PowerPoint presentations to Markdown format."
+  },
+
+  //     //TXT Conversion
+  {
+    icon: DocumentIcon,
+    title: "text to docx",
+    description: "Convert plain text files to Word document format."
+  },
+  {
+    icon: DocumentIcon,
+    title: "text to pdf",
+    description: "Convert plain text files to PDF format."
+  },
+  {
+    icon: DocumentIcon,
+    title: "text to html",
+    description: "Convert plain text files to HTML format."
+  },
+
+  //     //PDF Conversion
+  {
+    icon: DocumentIcon,
+    title: "pdf to html",
+    description: "Convert PDF files to HTML format."
+  },
+
+  // Markdown Conversion
+  {
+    icon: DocumentIcon,
+    title: "md to pdf",
+    description: "Convert Markdown files to PDF format."
+  },
+  {
+    icon: DocumentIcon,
+    title: "md to docx",
+    description: "Convert Markdown files to Word document format."
+  },
+  {
+    icon: DocumentIcon,
+    title: "md to odt",
+    description: "Convert Markdown files to OpenDocument text format."
+  },{
+    icon: DocumentIcon,
+    title: "md to pptx",
+    description: "Convert Markdown files to PowerPoint presentations."
+  },
+
+  // XLSX Conversion
+  {
+    icon: DocumentIcon,
+    title: "xlsx to json",
+    description: "Convert Excel spreadsheets to JSON format."
+  },
+  {
+    icon: DocumentIcon,
+    title: "xlsx to xml",
+    description: "Convert Excel spreadsheets to XML format."
+  },{
+    icon: DocumentIcon,
+    title: "xlsx to html",
+    description: "Convert Excel spreadsheets to HTML format."
+  },{
+    icon: DocumentIcon,
+    title: "xlsx to txt",
+    description: "Convert Excel spreadsheets to plain text format."
+  },
+
+  // ODS Conversion
+  {
+    icon: DocumentIcon,
+    title: "ods to csv",
+    description: "Convert OpenDocument spreadsheets to CSV format."
+  },
+  {
+    icon: DocumentIcon,
+    title: "ods to html",
+    description: "Convert OpenDocument spreadsheets to HTML format."
+  },
+  {
+    icon: DocumentIcon,
+    title: "ods to txt",
+    description: "Convert OpenDocument spreadsheets to plain text format."
+  },
+
+  // ODT Conversion
+  {
+    icon: DocumentIcon,
+    title: "odt to txt",
+    description: "Convert OpenDocument text files to plain text format."
+  },
+  {
+    icon: DocumentIcon,
+    title: "odt to html",
+    description: "Convert OpenDocument text files to HTML format."
+  },
+  {
+    icon: DocumentIcon,
+    title: "odt to md",
+    description: "Convert OpenDocument text files to Markdown format."
+  },
+  {
+    icon: DocumentIcon,
+    title: "odt to pptx",
+    description: "Convert OpenDocument text files to PowerPoint presentations."
+  },
+
+  // CSV Conversion
+  {
+    icon: DocumentIcon,
+    title: "csv to html",
+    description: "Convert CSV files to HTML format."
+  },{
+    icon: DocumentIcon,
+    title: "csv to pdf",
+    description: "Convert CSV files to PDF format."
+  },{
+    icon: DocumentIcon,
+    title: "csv to txt",
+    description: "Convert CSV files to plain text format."
+  },
+
+  // JSON Conversion
+  {
+    icon: DocumentIcon,
+    title: "json to html",
+    description: "Convert JSON data to HTML format."
+  },
+  {
+    icon: DocumentIcon,
+    title: "json to md",
+    description: "Convert JSON data to Markdown format."
+  },
+
+  // XML Conversion
+  {
+    icon: DocumentIcon,
+    title: "xml to xlsx",
+    description: "Convert XML data to Excel format."
+  },
+  {
+    icon: DocumentIcon,
+    title: "xml to html",
+    description: "Convert XML data to HTML format."
+  },
+  {
+    icon: DocumentIcon,
+    title: "xml to pdf",
+    description: "Convert XML data to PDF format."
+  },
+
+  // HTML Conversion
+  {
+    icon: DocumentIcon,
+    title: "html to docx",
+    description: "Convert HTML files to Word document format."
+  },
+  {
+    icon: DocumentIcon,
+    title: "html to txt",
+    description: "Convert HTML files to plain text format."
+  },
+  {
+    icon: DocumentIcon,
+    title: "html to xlsx",
+    description: "Convert HTML files to Excel spreadsheet format."
+  },
+  {
+    icon: DocumentIcon,
+    title: "html to csv",
+    description: "Convert HTML files to CSV format."
+  }
+
+
 ];
 
 
@@ -201,5 +406,4 @@ export const Features = () => {
     )
 }
 
-// Default export for Next.js page
 export default Features;
