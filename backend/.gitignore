@@ -1,0 +1,64 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+logs/
+server.log
+
+# OS files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE
+.vscode/
+.idea/
+*.sublime-*
+.atom/
+
+# Storage directories (uploaded/converted files)
+storage/
+storages/
+uploads/
+outputs/
+working/
+
+# Test files and outputs
+test-files/
+test-outputs/
+*.test.pdf
+*.test.docx
+*.test.xlsx
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+.cache/
+
+# Build artifacts
+dist/
+build/
+.next/
+
+# Debug files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Documentation (optional - uncomment if you don't want to push)
+# *.md
+# !README.md
+
+# Config files with sensitive data
+# config/secrets.js
+# config/database.js

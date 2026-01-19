@@ -9,6 +9,7 @@ import { officeToPdfRouter } from './routes/officeToPdf.routes.js';
 import { openDocumentsRouter } from './routes/openDocuments.routes.js';
 import { structuredDataRouter } from './routes/structuredData.routes.js';
 import { textMarkdownRouter } from './routes/textMarkdown.routes.js';
+import { pdfToOfficeRouter } from './routes/pdfToOffice.routes.js';
 
 
 const application = express();
@@ -47,7 +48,8 @@ application.get('/api', (req, res) => {
                 officeToPdf: '/api/v1/office-to-pdf/*',
                 openDocuments: '/api/v1/open-documents/*',
                 structuredData: '/api/v1/structured-data/*',
-                textMarkdown: '/api/v1/text-markdown/*'
+                textMarkdown: '/api/v1/text-markdown/*',
+                pdfToOffice: '/api/v1/pdf-to-office/*'
             }
         }
     });
@@ -69,6 +71,7 @@ application.use("/api/v1/office-to-pdf", officeToPdfRouter);
 application.use("/api/v1/open-documents", openDocumentsRouter);
 application.use("/api/v1/structured-data", structuredDataRouter);
 application.use("/api/v1/text-markdown", textMarkdownRouter);
+application.use("/api/v1/pdf-to-office", pdfToOfficeRouter);
 
 
 

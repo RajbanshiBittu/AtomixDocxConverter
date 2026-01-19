@@ -1,0 +1,27 @@
+{
+  "jobId": "87f0fae4-246f-4e66-8885-d5f3bb5141d8",
+  "conversion": "pdf-to-json",
+  "input": {
+    "filename": "test.pdf",
+    "size": 10983972
+  },
+  "output": {
+    "filename": "test.json",
+    "size": 3394907
+  },
+  "processing": {
+    "method": "pdf-parse + libreoffice-html",
+    "mode": "structured",
+    "pagesProcessed": 0,
+    "tablesFound": 0,
+    "ocrUsed": false,
+    "duration": 16030,
+    "timestamp": "2026-01-19T07:44:50.761Z"
+  },
+  "tools": {
+    "node": "v25.2.1",
+    "pdfParse": "latest",
+    "cheerio": "latest",
+    "libreoffice": "soffice"
+  }
+}

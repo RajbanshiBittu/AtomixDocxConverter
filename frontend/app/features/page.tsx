@@ -136,6 +136,31 @@ const formats = [
     title: "json to xlsx",
     description: "Convert JSON data to Excel format."
   },
+  {
+    icon: DocumentIcon,
+    title: "pdf to docx",
+    description: "Convert PDF files to Word documents."
+  },
+  {
+    icon: DocumentIcon,
+    title: "pdf to text",
+    description: "Convert PDF files to plain text."
+  },
+  {
+    icon: DocumentIcon,
+    title: "pdf to xlsx",
+    description: "Convert PDF files to Excel spreadsheets."
+  },
+  {
+    icon: DocumentIcon,
+    title: "pdf to json",
+    description: "Convert PDF files to JSON format."
+  },
+  {
+    icon: DocumentIcon,
+    title: "pdf to csv",
+    description: "Convert PDF files to CSV format."
+  },
 ];
 
 
@@ -155,7 +180,7 @@ export const Features = () => {
     return (
         <>
             <section className="py-15 bg-gray-50">
-                <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-6 px-4">
+                <div className="max-w-7xl mx-auto grid md:grid-cols-5 gap-6 px-4">
                     {formats.map(({ title, description, icon: Icon }) => (
                         <article
                         key={title}

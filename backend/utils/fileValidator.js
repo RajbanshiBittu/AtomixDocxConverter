@@ -38,7 +38,14 @@ const FILE_TYPE_RULES = {
     // Spreadsheet conversions
     'xlsx-to-csv': ['.xlsx', '.xls'],
     'csv-to-xlsx': ['.csv'],
-    'json-to-xlsx': ['.json']
+    'json-to-xlsx': ['.json'],
+    
+    // PDF to Office conversions
+    'pdf-to-text': ['.pdf'],
+    'pdf-to-docx': ['.pdf'],
+    'pdf-to-xlsx': ['.pdf'],
+    'pdf-to-json': ['.pdf'],
+    'pdf-to-csv': ['.pdf']
 };
 
 /**

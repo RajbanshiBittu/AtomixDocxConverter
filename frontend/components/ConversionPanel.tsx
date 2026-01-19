@@ -84,6 +84,13 @@ export default function ConversionPanel({ conversionType = "docx to pdf" }: Conv
       'xlsx to csv': `${baseUrl}/structured-data/xlsx-to-csv`,
       'csv to xlsx': `${baseUrl}/structured-data/csv-to-xlsx`,
       'json to xlsx': `${baseUrl}/structured-data/json-to-xlsx`,
+
+      //PDF to Office
+      'pdf to docx': `${baseUrl}/pdf-to-office/pdf-to-docx`,
+      'pdf to text': `${baseUrl}/pdf-to-office/pdf-to-text`,
+      'pdf to xlsx': `${baseUrl}/pdf-to-office/pdf-to-xlsx`,
+      'pdf to json': `${baseUrl}/pdf-to-office/pdf-to-json`,
+      'pdf to csv': `${baseUrl}/pdf-to-office/pdf-to-csv`,
     };
     
     return endpointMap[type.toLowerCase()] || endpointMap['docx to pdf'];
