@@ -135,23 +135,19 @@ export default function ConversionPanel({ conversionType = "docx to pdf" }: Conv
       'odt to md': `${baseUrl}/comprehensive-conversion/odt-to-md`,
       'odt to pptx': `${baseUrl}/comprehensive-conversion/odt-to-pptx`,
 
-      // CSV Conversion
-      'csv-to-xml': `${baseUrl}/comprehensive-conversion/csv-to-xml`,
-      'csv-to-html': `${baseUrl}/comprehensive-conversion/csv-to-html`,
-      'csv-to-pdf': `${baseUrl}/comprehensive-conversion/csv-to-pdf`,
-      'csv-to-txt': `${baseUrl}/comprehensive-conversion/csv-to-txt`,
+      // CSV Conversion (additional beyond structured-data)
+      'csv to html': `${baseUrl}/comprehensive-conversion/csv-to-html`,
+      'csv to pdf': `${baseUrl}/comprehensive-conversion/csv-to-pdf`,
+      'csv to txt': `${baseUrl}/comprehensive-conversion/csv-to-txt`,
 
-      // JSON Conversion
-      'json-to-csv': `${baseUrl}/comprehensive-conversion/json-to-csv`,
-      'json-to-xlsx': `${baseUrl}/comprehensive-conversion/json-to-xlsx`,
-      'json-to-html': `${baseUrl}/comprehensive-conversion/json-to-html`,
-      'json-to-md': `${baseUrl}/comprehensive-conversion/json-to-md`,
+      // JSON Conversion (additional beyond structured-data)
+      'json to html': `${baseUrl}/comprehensive-conversion/json-to-html`,
+      'json to md': `${baseUrl}/comprehensive-conversion/json-to-md`,
 
-      // XML Conversion
-      'xml-to-csv': `${baseUrl}/comprehensive-conversion/xml-to-csv`,
-      'xml-to-xlsx': `${baseUrl}/comprehensive-conversion/xml-to-xlsx`,
-      'xml-to-html': `${baseUrl}/comprehensive-conversion/xml-to-html`,
-      'xml-to-pdf': `${baseUrl}/comprehensive-conversion/xml-to-pdf`,
+      // XML Conversion (additional beyond structured-data)
+      'xml to xlsx': `${baseUrl}/comprehensive-conversion/xml-to-xlsx`,
+      'xml to html': `${baseUrl}/comprehensive-conversion/xml-to-html`,
+      'xml to pdf': `${baseUrl}/comprehensive-conversion/xml-to-pdf`,
 
       // HTML Conversion
       'html to docx': `${baseUrl}/comprehensive-conversion/html-to-docx`,
