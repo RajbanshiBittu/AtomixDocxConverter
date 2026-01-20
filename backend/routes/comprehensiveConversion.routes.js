@@ -48,19 +48,15 @@ router.post("/odt-to-md", uploadMiddleware.single('file'), controllers.odtToMdCo
 router.post("/odt-to-pptx", uploadMiddleware.single('file'), controllers.odtToPptxController);
 
 // ==================== CSV CONVERSIONS (4) ====================
-router.post("/csv-to-xml", uploadMiddleware.single('file'), controllers.csvToXmlController);
 router.post("/csv-to-html", uploadMiddleware.single('file'), controllers.csvToHtmlController);
 router.post("/csv-to-pdf", uploadMiddleware.single('file'), controllers.csvToPdfController);
 router.post("/csv-to-txt", uploadMiddleware.single('file'), controllers.csvToTxtController);
 
 // ==================== JSON CONVERSIONS (4) ====================
-router.post("/json-to-csv", uploadMiddleware.single('file'), controllers.jsonToCsvController);
-router.post("/json-to-xlsx", uploadMiddleware.single('file'), controllers.jsonToXlsxController);
 router.post("/json-to-html", uploadMiddleware.single('file'), controllers.jsonToHtmlController);
 router.post("/json-to-md", uploadMiddleware.single('file'), controllers.jsonToMdController);
 
 // ==================== XML CONVERSIONS (4) ====================
-router.post("/xml-to-csv", uploadMiddleware.single('file'), controllers.xmlToCsvController);
 router.post("/xml-to-xlsx", uploadMiddleware.single('file'), controllers.xmlToXlsxController);
 router.post("/xml-to-html", uploadMiddleware.single('file'), controllers.xmlToHtmlController);
 router.post("/xml-to-pdf", uploadMiddleware.single('file'), controllers.xmlToPdfController);

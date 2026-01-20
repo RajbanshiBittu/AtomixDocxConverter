@@ -48,6 +48,10 @@ next-env.d.ts
 .atom/
 *.swp
 *.swo
+
+# Documentation and reports (optional - comment out to include in repo)
+# DUPLICATE_KEY_FIX_REPORT.md
+# error.md
 *~
 .project
 .classpath

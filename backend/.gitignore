@@ -48,6 +48,36 @@ outputs/
 working/
 
 # Test files and outputs
+test-outputs/
+test-outputs-all-routes/
+test-files/
+*.log
+route-test-results.txt
+manual_test_results.txt
+final-test-results.log
+test-output.log
+test-output-with-pptx.log
+
+# Test scripts
+test-all-conversions.js
+manual-test-all.sh
+test-all-routes.sh
+test-comprehensive-conversions.sh
+test-pdf-conversions.sh
+
+# Documentation and reports (keep in repo but optional to ignore)
+# COMPREHENSIVE_IMPLEMENTATION.md
+# FINAL_TEST_RESULTS.md
+# IMPLEMENTATION_COMPLETE.md
+# IMPLEMENTATION_FINAL_SUMMARY.md
+# IMPLEMENTATION_SUMMARY.md
+# PPTX_ROUTES_FIX_REPORT.md
+# QUICK_REFERENCE.md
+# ROUTE_TESTING_REPORT.md
+# TEST_REPORT.md
+# TEST_RESULTS.md
+# pdfToDocx.md
+# study.md
 test-files/
 test-outputs/
 test-outputs-all-routes/

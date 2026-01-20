@@ -1,4 +1,3 @@
-// components/ConversionPanel.tsx
 'use client';
 
 import { useState } from 'react';
@@ -93,67 +92,67 @@ export default function ConversionPanel({ conversionType = "docx to pdf" }: Conv
       'pdf to csv': `${baseUrl}/pdf-to-office/pdf-to-csv`,
 
       // Docx Conversion
-      'docx to txt': `${baseUrl}/comprehensive-conversion/docx-to-txt`,
-      'docx to html': `${baseUrl}/comprehensive-conversion/docx-to-html`,
-      'docx to pptx': `${baseUrl}/comprehensive-conversion/docx-to-pptx`,
-      'docx to xlsx': `${baseUrl}/comprehensive-conversion/docx-to-xlsx`, 
+      'docx to txt': `${baseUrl}/conversions/docx-to-txt`,
+      'docx to html': `${baseUrl}/conversions/docx-to-html`,
+      'docx to pptx': `${baseUrl}/conversions/docx-to-pptx`,
+      'docx to xlsx': `${baseUrl}/conversions/docx-to-xlsx`, 
 
       //PPTX Conversion
-      'pptx to txt': `${baseUrl}/comprehensive-conversion/pptx-to-txt`,
-      'pptx to html': `${baseUrl}/comprehensive-conversion/pptx-to-html`,
-      'pptx to md': `${baseUrl}/comprehensive-conversion/pptx-to-md`,
+      'pptx to txt': `${baseUrl}/conversions/pptx-to-txt`,
+      'pptx to html': `${baseUrl}/conversions/pptx-to-html`,
+      'pptx to md': `${baseUrl}/conversions/pptx-to-md`,
 
       //TXT Conversion
-      'txt to docx': `${baseUrl}/comprehensive-conversion/txt-to-docx`,
-      'txt to pdf': `${baseUrl}/comprehensive-conversion/txt-to-pdf`,
-      'txt to html': `${baseUrl}/comprehensive-conversion/txt-to-html`,
-      'txt to md': `${baseUrl}/comprehensive-conversion/txt-to-md`,
+      'txt to docx': `${baseUrl}/conversions/txt-to-docx`,
+      'txt to pdf': `${baseUrl}/conversions/txt-to-pdf`,
+      'txt to html': `${baseUrl}/conversions/txt-to-html`,
+      'txt to md': `${baseUrl}/conversions/txt-to-md`,
 
       //PDF Conversion
-      'pdf to html': `${baseUrl}/comprehensive-conversion/pdf-to-html`,
+      'pdf to html': `${baseUrl}/conversions/pdf-to-html`,
 
       // Markdown Conversion
-      'md to pdf': `${baseUrl}/comprehensive-conversion/md-to-pdf`,
-      'md to docx': `${baseUrl}/comprehensive-conversion/md-to-docx`,
-      'md to odt': `${baseUrl}/comprehensive-conversion/md-to-odt`,
-      'md to pptx': `${baseUrl}/comprehensive-conversion/md-to-pptx`,
+      'md to pdf': `${baseUrl}/conversions/md-to-pdf`,
+      'md to docx': `${baseUrl}/conversions/md-to-docx`,
+      'md to odt': `${baseUrl}/conversions/md-to-odt`,
+      'md to pptx': `${baseUrl}/conversions/md-to-pptx`,
 
       // XLSX Conversion
-      'xlsx to json': `${baseUrl}/comprehensive-conversion/xlsx-to-json`,
-      'xlsx to xml': `${baseUrl}/comprehensive-conversion/xlsx-to-xml`,
-      'xlsx to html': `${baseUrl}/comprehensive-conversion/xlsx-to-html`,
-      'xlsx to txt': `${baseUrl}/comprehensive-conversion/xlsx-to-txt`, 
+      'xlsx to json': `${baseUrl}/conversions/xlsx-to-json`,
+      'xlsx to xml': `${baseUrl}/conversions/xlsx-to-xml`,
+      'xlsx to html': `${baseUrl}/conversions/xlsx-to-html`,
+      'xlsx to txt': `${baseUrl}/conversions/xlsx-to-txt`, 
 
       // ODS Conversion
-      'ods to csv': `${baseUrl}/comprehensive-conversion/ods-to-csv`,
-      'ods to html': `${baseUrl}/comprehensive-conversion/ods-to-html`,
-      'ods to txt': `${baseUrl}/comprehensive-conversion/ods-to-txt`, 
+      'ods to csv': `${baseUrl}/conversions/ods-to-csv`,
+      'ods to html': `${baseUrl}/conversions/ods-to-html`,
+      'ods to txt': `${baseUrl}/conversions/ods-to-txt`, 
 
       // ODT Conversion
-      'odt to txt': `${baseUrl}/comprehensive-conversion/odt-to-txt`,
-      'odt to html': `${baseUrl}/comprehensive-conversion/odt-to-html`,
-      'odt to md': `${baseUrl}/comprehensive-conversion/odt-to-md`,
-      'odt to pptx': `${baseUrl}/comprehensive-conversion/odt-to-pptx`,
+      'odt to txt': `${baseUrl}/conversions/odt-to-txt`,
+      'odt to html': `${baseUrl}/conversions/odt-to-html`,
+      'odt to md': `${baseUrl}/conversions/odt-to-md`,
+      'odt to pptx': `${baseUrl}/conversions/odt-to-pptx`,
 
       // CSV Conversion (additional beyond structured-data)
-      'csv to html': `${baseUrl}/comprehensive-conversion/csv-to-html`,
-      'csv to pdf': `${baseUrl}/comprehensive-conversion/csv-to-pdf`,
-      'csv to txt': `${baseUrl}/comprehensive-conversion/csv-to-txt`,
+      'csv to html': `${baseUrl}/conversions/csv-to-html`,
+      'csv to pdf': `${baseUrl}/conversions/csv-to-pdf`,
+      'csv to txt': `${baseUrl}/conversions/csv-to-txt`,
 
       // JSON Conversion (additional beyond structured-data)
-      'json to html': `${baseUrl}/comprehensive-conversion/json-to-html`,
-      'json to md': `${baseUrl}/comprehensive-conversion/json-to-md`,
+      'json to html': `${baseUrl}/conversions/json-to-html`,
+      'json to md': `${baseUrl}/conversions/json-to-md`,
 
       // XML Conversion (additional beyond structured-data)
-      'xml to xlsx': `${baseUrl}/comprehensive-conversion/xml-to-xlsx`,
-      'xml to html': `${baseUrl}/comprehensive-conversion/xml-to-html`,
-      'xml to pdf': `${baseUrl}/comprehensive-conversion/xml-to-pdf`,
+      'xml to xlsx': `${baseUrl}/conversions/xml-to-xlsx`,
+      'xml to html': `${baseUrl}/conversions/xml-to-html`,
+      'xml to pdf': `${baseUrl}/conversions/xml-to-pdf`,
 
       // HTML Conversion
-      'html to docx': `${baseUrl}/comprehensive-conversion/html-to-docx`,
-      'html to txt': `${baseUrl}/comprehensive-conversion/html-to-txt`,
-      'html to xlsx': `${baseUrl}/comprehensive-conversion/html-to-xlsx`,
-      'html to csv': `${baseUrl}/comprehensive-conversion/html-to-csv`,
+      'html to docx': `${baseUrl}/conversions/html-to-docx`,
+      'html to txt': `${baseUrl}/conversions/html-to-txt`,
+      'html to xlsx': `${baseUrl}/conversions/html-to-xlsx`,
+      'html to csv': `${baseUrl}/conversions/html-to-csv`,
 
     };
     

@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { DocumentIcon } from "@heroicons/react/24/outline";
 import ConversionPanel from "@/components/ConversionPanel";
-import { title } from "process";
 
 const formats = [
   // Office to PDF conversions
@@ -47,7 +46,7 @@ const formats = [
   {
     icon: DocumentIcon,
     title: "xlsx to ods",
-    description: "Convert Excel to OpenDocument spreadsheet."
+    description: "Convert Excel spreadsheets to OpenDocument format."
   },
   {
     icon: DocumentIcon,
@@ -181,7 +180,7 @@ const formats = [
   //     //PPTX Conversion
   {
     icon: DocumentIcon,
-    title: "pptx to text",
+    title: "pptx to txt",
     description: "Convert PowerPoint presentations to plain text format."
   },
   {
@@ -198,20 +197,24 @@ const formats = [
   //     //TXT Conversion
   {
     icon: DocumentIcon,
-    title: "text to docx",
+    title: "txt to docx",
     description: "Convert plain text files to Word document format."
   },
   {
     icon: DocumentIcon,
-    title: "text to pdf",
+    title: "txt to pdf",
     description: "Convert plain text files to PDF format."
   },
   {
     icon: DocumentIcon,
-    title: "text to html",
+    title: "txt to html",
     description: "Convert plain text files to HTML format."
   },
-
+  {
+    icon: DocumentIcon,
+    title: "txt to md",
+    description: "Convert plain text files to Markdown format."
+  },
   //     //PDF Conversion
   {
     icon: DocumentIcon,
@@ -364,14 +367,18 @@ const formats = [
     title: "html to csv",
     description: "Convert HTML files to CSV format."
   }
-
-
 ];
 
 
 export const Features = () => {
     const [showConversionPanel, setShowConversionPanel] = useState(false);
     const [selectedConversionType, setSelectedConversionType] = useState<string>('');
+    const [showAllFeatures, setShowAllFeatures] = useState(false);
+
+    // Split features: first 35 and remaining 33
+    const INITIAL_DISPLAY_COUNT = 35;
+    const visibleFormats = showAllFeatures ? formats : formats.slice(0, INITIAL_DISPLAY_COUNT);
+    const remainingCount = formats.length - INITIAL_DISPLAY_COUNT;
 
     const handleCardClick = (conversionType: string) => {
         setSelectedConversionType(conversionType);
@@ -382,22 +389,68 @@ export const Features = () => {
         }, 100);
     };
 
+    const toggleShowMore = () => {
+        setShowAllFeatures(!showAllFeatures);
+        
+        // If collapsing, scroll to the "More Features" button position
+        if (showAllFeatures) {
+            setTimeout(() => {
+                const section = document.querySelector('section.py-15');
+                if (section) {
+                    const sectionRect = section.getBoundingClientRect();
+                    const offset = window.pageYOffset + sectionRect.top;
+                    window.scrollTo({ 
+                        top: offset + 1200, // Approximate position of first 35 cards
+                        behavior: 'smooth' 
+                    });
+                }
+            }, 50);
+        }
+    };
+
     return (
         <>
             <section className="py-15 bg-gray-50">
-                <div className="max-w-7xl mx-auto grid md:grid-cols-5 gap-6 px-4">
-                    {formats.map(({ title, description, icon: Icon }) => (
-                        <article
-                        key={title}
-                        onClick={() => handleCardClick(title)}
-                        className="p-6 rounded-xl bg-white shadow hover:shadow-lg transition cursor-pointer">
-                            <Icon className="h-10 w-10 text-green-600 mb-4" />
+                <div className="max-w-7xl mx-auto px-4">
+                  <div className="text-center mb-12">
+                    <h2 className="text-3xl font-extrabold text-gray-900">Everything You Need to Convert Documents</h2>
+                    <p className="mt-4 text-lg text-green-500">Convert files between multiple formats with accuracy, speed, and reliability — all in one place</p>
+                  </div>
+                    <div className="grid md:grid-cols-5 gap-6">
+                        {visibleFormats.map(({ title, description, icon: Icon }) => (
+                            <article
+                                key={title}
+                                onClick={() => handleCardClick(title)}
+                                className="p-4 rounded-xl bg-white shadow hover:shadow-lg border border-gray-200 transition-all duration-200 cursor-pointer transform hover:-translate-y-1"
+                            >
+                                <Icon className="h-7 w-7 text-green-600 mb-4" />
+                                <h3 className="font-semibold text-lg mb-2 text-black">{title}</h3>
+                                <p className="text-sm text-gray-600">{description}</p>
+                            </article>
+                        ))}
+                    </div>
 
-                            <h3 className="font-semibold text-lg mb-2 text-black">{title}</h3>
-
-                            <p className="text-sm text-gray-600">{description}</p>
-                        </article>
-                    ))}
+                    {/* More Features / Show Less Button */}
+                    <div className="flex justify-center mt-12">
+                        <button
+                            onClick={toggleShowMore}
+                            className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-5 py-2 rounded-lg font-medium transition-all duration-200 shadow-md hover:shadow-lg active:scale-95"
+                            aria-expanded={showAllFeatures}
+                            aria-label={showAllFeatures ? "Show less features" : `Show ${remainingCount} more features`}
+                        >
+                            <span>
+                                {showAllFeatures ? 'Show Less' : `More Features`}
+                            </span>
+                            <svg
+                                className={`w-4 h-4 transition-transform duration-200 ${showAllFeatures ? 'rotate-180' : ''}`}
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                    </div>
                 </div>
             </section>
             

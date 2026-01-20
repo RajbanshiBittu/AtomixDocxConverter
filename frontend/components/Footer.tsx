@@ -1,16 +1,3 @@
-// export default function Footer() {
-//   return (
-//     <footer className="bg-gray-100 text-slate-700 py-10">
-//       <div className="max-w-7xl mx-auto flex justify-between px-4 flex-wrap gap-4">
-//         <p>© 2026 Atomix Converter</p>
-//         <div className="flex gap-6">
-//           <span className="hover:text-white cursor-pointer">Privacy</span>
-//           <span className="hover:text-white cursor-pointer">Terms</span>
-//         </div>
-//       </div>
-//     </footer>
-//   );
-// }
 'use client';
 
 import Link from 'next/link';
