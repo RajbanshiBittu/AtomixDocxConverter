@@ -1,1 +1,39 @@
-echo ".vscode/" >> .gitignore
+# Dependencies
+node_modules/
+*/node_modules/
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.production
+*/.env
+
+# Storage and temporary files
+backend/storage/uploads/
+backend/storage/outputs/
+backend/storage/working/
+backend/test-outputs/
+backend/test-outputs-all-routes/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+
+# Testing
+coverage/
