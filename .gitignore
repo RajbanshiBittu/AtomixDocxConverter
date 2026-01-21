@@ -37,3 +37,17 @@ out/
 
 # Testing
 coverage/
+
+# Documentation and test files
+CONVERSION_ROUTES_COMPARISON.md
+FINAL_COMPREHENSIVE_TEST_REPORT.md
+PROFESSIONAL_QA_REPORT.md
+PROGRESSIVE_DISCLOSURE_IMPLEMENTATION.md
+backend/FINAL_TEST_RESULTS.md
+backend/IMPLEMENTATION_COMPLETE.md
+backend/IMPLEMENTATION_SUMMARY.md
+backend/TEST_RESULTS.md
+backend/pdfToDocx.md
+backend/test-all-routes.sh
+backend/test-comprehensive-conversions.sh
+backend/test-pdf-conversions.sh
