@@ -2,7 +2,8 @@ import { spawn } from "child_process";
 import path from "path";
 import fs from "fs/promises";
 import { libreOfficeConfig } from "../../config/libreOffice.config.js";
-import { createJobWorkspace } from "../jobs/jobManager.js";
+import createJobWorkspace from "../jobs/jobManager.js";
+import logger from "../../utils/logger.js";
 
 export const libreOfficeEngine = {
     async convert(inputFile) {
@@ -32,6 +33,7 @@ export const libreOfficeEngine = {
         // Verify output file exists - LibreOffice may exit with code 0 even on failure
         try {
             await fs.access(outputPath);
+            logger.info(`Converted file to PDF at ${outputPath}`);
         } catch (error) {
             throw new Error(`Conversion failed: Output file not created. The input file may be corrupted or in an unsupported format.`);
         }

@@ -1,10 +1,11 @@
 import { spawn } from "child_process";
 import path from "path";
 import fs from "fs/promises";
-import { createJobWorkspace } from "../jobs/jobManager.js";
+import  createJobWorkspace  from "../jobs/jobManager.js";
 import { libreOfficeConfig } from "../../config/libreOffice.config.js";
 import * as cheerio from "cheerio";
 import { createRequire } from 'module';
+import logger from "../../utils/logger.js";
 
 const require = createRequire(import.meta.url);
 const pdfParseModule = require('pdf-parse');
@@ -34,7 +35,7 @@ export const pdfToJsonEngine = {
                     info: result.info || {}
                 };
             } catch (parseError) {
-                console.warn('pdf-parse failed, falling back to LibreOffice HTML:', parseError.message || parseError);
+                logger.warn('pdf-parse failed, falling back to LibreOffice HTML:', parseError.message || parseError);
                 // create a minimal pdfData structure so downstream code can continue
                 pdfData = { text: '', numpages: 0, info: {} };
             }
@@ -103,7 +104,7 @@ export const pdfToJsonEngine = {
                 });
 
             } catch (htmlError) {
-                console.warn('HTML parsing failed, using fallback:', htmlError.message);
+                logger.warn('HTML parsing failed, using fallback:', htmlError.message);
             }
 
             // Add metadata
@@ -178,7 +179,7 @@ export const pdfToJsonEngine = {
             try {
                 await fs.rm(job.workingDir, { recursive: true, force: true });
             } catch (cleanupError) {
-                console.warn('Cleanup warning:', cleanupError);
+                logger.warn('Cleanup warning:', cleanupError);
             }
 
             return {
@@ -193,7 +194,7 @@ export const pdfToJsonEngine = {
                 await fs.rm(job.workingDir, { recursive: true, force: true });
                 await fs.rm(outputDir, { recursive: true, force: true });
             } catch (cleanupError) {
-                console.warn('Cleanup error:', cleanupError);
+                logger.warn('Cleanup error:', cleanupError);
             }
             throw new Error(`PDF to JSON conversion failed: ${error.message}`);
         }

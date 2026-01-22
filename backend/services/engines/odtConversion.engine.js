@@ -3,7 +3,7 @@ import path from "path";
 import fs from "fs/promises";
 import TurndownService from "turndown";
 import { libreOfficeConfig } from "../../config/libreOffice.config.js";
-import { createJobWorkspace } from "../jobs/jobManager.js";
+import createJobWorkspace from "../jobs/jobManager.js";
 import { minimalPptxGenerator } from "./minimalPptx.generator.js";
 
 export const odtConversionEngine = {

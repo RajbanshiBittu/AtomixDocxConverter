@@ -4,6 +4,9 @@ import { AppError } from "../utils/errorHandler.js";
 import { HTTP_STATUS, ERROR_MESSAGES } from "../config/constants.js";
 import path from "path";
 import { validateFileType } from "../utils/fileValidator.js";
+import logger from "../utils/logger.js";
+import { sanitizeFilename } from "../utils/sanitizer.js";
+
 
 
 
@@ -15,6 +18,7 @@ export async function textToMdController(req, res, next) {
 
         // Validate file type
         validateFileType(req.file, 'text-to-md');
+        const sanitizedName = sanitizeFilename(req.file.originalname);
 
         const result = await runTextMarkdownConversion({
             inputFile: req.file,
@@ -22,11 +26,12 @@ export async function textToMdController(req, res, next) {
             targetFormat: 'md'
         });
 
-        res.setHeader('Content-Disposition', `attachment; filename="${path.basename(result.outputPath)}"`);
+        res.setHeader('Content-Disposition', `attachment; filename="${sanitizedName.replace(/\.txt$/i, '.md')}"`);
 
         return res.status(HTTP_STATUS.OK).download(result.outputPath);
     } catch (error) {
-        console.error('text to md conversion error:', error);
+        // console.error('text to md conversion error:', error);
+        logger.error('text to md conversion error:', error);
         if (error.isOperational) {
             return next(error);
         }
@@ -42,17 +47,19 @@ export async function mdToTextController(req, res, next) {
 
         // Validate file type
         validateFileType(req.file, 'md-to-text');
+        const sanitizedName = sanitizeFilename(req.file.originalname);
 
         const result = await runTextMarkdownConversion({
             inputFile: req.file,
             sourceFormat: 'md',
             targetFormat: 'text'
         });
-        res.setHeader('Content-Disposition', `attachment; filename="${path.basename(result.outputPath)}"`);
+        res.setHeader('Content-Disposition', `attachment; filename="${sanitizedName.replace(/\.md$/i, '.txt')}"`);
 
         return res.status(HTTP_STATUS.OK).download(result.outputPath);
     } catch (error) {
-        console.error('md to text conversion error:', error);
+        // console.error('md to text conversion error:', error);
+        logger.error('md to text conversion error:', error);
         if (error.isOperational) {
             return next(error);
         }
@@ -68,6 +75,7 @@ export async function mdToHtmlController(req, res, next) {
 
         // Validate file type
         validateFileType(req.file, 'md-to-html');
+        const sanitizedName = sanitizeFilename(req.file.originalname);
 
         const result = await runTextMarkdownConversion({
             inputFile: req.file,
@@ -75,11 +83,12 @@ export async function mdToHtmlController(req, res, next) {
             targetFormat: 'html'
         });
 
-        res.setHeader('Content-Disposition', `attachment; filename="${path.basename(result.outputPath)}"`);
+        res.setHeader('Content-Disposition', `attachment; filename="${sanitizedName.replace(/\.md$/i, '.html')}"`);
 
         return res.status(HTTP_STATUS.OK).download(result.outputPath);
     } catch (error) {
-        console.error('md to html conversion error:', error);
+        // console.error('md to html conversion error:', error);
+        logger.error('md to html conversion error:', error);
         if (error.isOperational) {
             return next(error);
         }
@@ -95,18 +104,19 @@ export async function htmlToMdController(req, res, next) {
 
         // Validate file type
         validateFileType(req.file, 'html-to-md');
-
+        const sanitizedName = sanitizeFilename(req.file.originalname);
         const result = await runTextMarkdownConversion({
             inputFile: req.file,
             sourceFormat: 'html',
             targetFormat: 'md'
         });
 
-        res.setHeader('Content-Disposition', `attachment; filename="${path.basename(result.outputPath)}"`);
+        res.setHeader('Content-Disposition', `attachment; filename="${sanitizedName.replace(/\.html$/i, '.md')}"`);
 
         return res.status(HTTP_STATUS.OK).download(result.outputPath);
     } catch (error) {
-        console.error('html to md conversion error:', error);
+        // console.error('html to md conversion error:', error);
+        logger.error('html to md conversion error:', error);
         if (error.isOperational) {
             return next(error);
         }
@@ -122,16 +132,17 @@ export async function docxToMdController(req, res, next) {
 
         // Validate file type
         validateFileType(req.file, 'docx-to-md');
-
+        const sanitizedName = sanitizeFilename(req.file.originalname);
         const result = await runDocxToMarkdownConversion({
             inputFile: req.file
         });
 
-        res.setHeader('Content-Disposition', `attachment; filename="${path.basename(result.outputPath)}"`);
+        res.setHeader('Content-Disposition', `attachment; filename="${sanitizedName.replace(/\.docx$/i, '.md')}"`);
 
         return res.status(HTTP_STATUS.OK).download(result.outputPath);
     } catch (error) {
-        console.error('docx to md conversion error:', error);
+        // console.error('docx to md conversion error:', error);
+        logger.error('docx to md conversion error:', error);
         if (error.isOperational) {
             return next(error);
         }

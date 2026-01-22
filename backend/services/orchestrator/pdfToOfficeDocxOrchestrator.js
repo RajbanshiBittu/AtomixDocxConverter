@@ -1,6 +1,7 @@
 import { pdfToDocxEngine } from "../engines/pdfToOfficeDocx.engine.js";
 import path from "path";
 import fs from "fs/promises";
+import logger from "../../utils/logger.js";
 
 export async function runPdfToDocxConversion({ inputFile, mode = 'fast' }) {
     try {
@@ -17,7 +18,7 @@ export async function runPdfToDocxConversion({ inputFile, mode = 'fast' }) {
             metadata: result.manifest
         };
     } catch (error) {
-        console.error('PDF to docx orchestrator error:', error);
+        logger.error('PDF to docx orchestrator error:', error);
         throw error;
     }
 }

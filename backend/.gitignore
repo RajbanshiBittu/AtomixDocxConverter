@@ -1,13 +1,20 @@
+# ============================================
+# BACKEND .gitignore
+# ============================================
+
 # Dependencies
 node_modules/
 package-lock.json
+yarn.lock
+pnpm-lock.yaml
 
-# Environment variables
+# Environment variables (NEVER commit these)
 .env
 .env.local
 .env.*.local
 .env.production
 .env.development
+.env.test
 
 # Logs
 *.log
@@ -21,6 +28,8 @@ pnpm-debug.log*
 
 # OS files
 .DS_Store
+.AppleDouble
+.LSOverride
 Thumbs.db
 *.swp
 *.swo
@@ -29,6 +38,10 @@ Thumbs.db
 .Trashes
 ehthumbs.db
 Desktop.ini
+$RECYCLE.BIN/
+.directory
+.Trash-*
+.fuse_hidden*
 
 # IDE
 .vscode/
@@ -40,47 +53,23 @@ Desktop.ini
 .classpath
 .settings/
 
-# Storage directories (uploaded/converted files)
+# Storage directories (uploaded/converted files - runtime data only)
 storage/
 storages/
 uploads/
 outputs/
 working/
 
-# Test files and outputs
+# Test files and outputs (NOT needed in production)
+# Test files and outputs (NOT needed in production)
 test-outputs/
 test-outputs-all-routes/
 test-files/
-*.log
 route-test-results.txt
 manual_test_results.txt
 final-test-results.log
 test-output.log
 test-output-with-pptx.log
-
-# Test scripts
-test-all-conversions.js
-manual-test-all.sh
-test-all-routes.sh
-test-comprehensive-conversions.sh
-test-pdf-conversions.sh
-
-# Documentation and reports (keep in repo but optional to ignore)
-# COMPREHENSIVE_IMPLEMENTATION.md
-# FINAL_TEST_RESULTS.md
-# IMPLEMENTATION_COMPLETE.md
-# IMPLEMENTATION_FINAL_SUMMARY.md
-# IMPLEMENTATION_SUMMARY.md
-# PPTX_ROUTES_FIX_REPORT.md
-# QUICK_REFERENCE.md
-# ROUTE_TESTING_REPORT.md
-# TEST_REPORT.md
-# TEST_RESULTS.md
-# pdfToDocx.md
-# study.md
-test-files/
-test-outputs/
-test-outputs-all-routes/
 *.test.pdf
 *.test.docx
 *.test.xlsx
@@ -88,11 +77,33 @@ test-outputs-all-routes/
 *.test.txt
 *.test.html
 
-# Test scripts output and logs
-test-output.log
-test-output-with-pptx.log
-final-test-results.log
-route-test-results.txt
+# Test scripts (NOT needed in production)
+test-all-conversions.js
+manual-test-all.sh
+test-all-routes.sh
+test-comprehensive-conversions.sh
+test-pdf-conversions.sh
+
+# Documentation and implementation reports (NOT needed in production - keep README.md only)
+COMPREHENSIVE_IMPLEMENTATION.md
+FINAL_TEST_RESULTS.md
+IMPLEMENTATION_COMPLETE.md
+IMPLEMENTATION_FINAL_SUMMARY.md
+IMPLEMENTATION_SUMMARY.md
+PPTX_ROUTES_FIX_REPORT.md
+QUICK_REFERENCE.md
+ROUTE_TESTING_REPORT.md
+TEST_REPORT.md
+TEST_RESULTS.md
+pdfToDocx.md
+study.md
+*_IMPLEMENTATION*.md
+*_TEST*.md
+*_FINAL*.md
+*_COMPREHENSIVE*.md
+*_QUICK*.md
+*_ROUTE*.md
+*_PPTX*.md
 
 # Temporary files
 tmp/
@@ -103,27 +114,9 @@ temp/
 # Build artifacts
 dist/
 build/
-.next/
-out/
 coverage/
 
-# Documentation files (generated reports - keep README.md only)
-IMPLEMENTATION_*.md
-TEST_*.md
-FINAL_*.md
-COMPREHENSIVE_*.md
-QUICK_*.md
-ROUTE_*.md
-PPTX_*.md
-study.md
-pdfToDocx.md
-
-# Test scripts (optional - uncomment if you want to keep them in repo)
-# test-all-routes.sh
-# test-comprehensive-conversions.sh
-# test-pdf-conversions.sh
-
-# Config files with sensitive data
+# Sensitive config files
 config/secrets.js
 config/database.js
 config/*.secret.*
@@ -134,66 +127,15 @@ pids/
 *.seed
 *.pid.lock
 
-# Optional npm cache directory
+# Optional npm cache
 .npm
-
-# Optional eslint cache
 .eslintcache
-
-# Optional REPL history
 .node_repl_history
 
 # Output of 'npm pack'
 *.tgz
-
-# Yarn Integrity file
 .yarn-integrity
 
-# dotenv environment variables file
-.env.test
-
-# parcel-bundler cache
-.parcel-cache
-
-# Next.js build output
-.next
-
-# Nuxt.js build / generate output
-.nuxt
-dist
-
-# Gatsby files
-.cache/
-public
-
-# vuepress build output
-.vuepress/dist
-
-# Serverless directories
-.serverless/
-
-# FuseBox cache
-.fusebox/
-
-# DynamoDB Local files
-.dynamodb/
-
-# TernJS port file
-.tern-port
-
-# MacOS
-.DS_Store
-.AppleDouble
-.LSOverride
-
-# Windows
-Thumbs.db
-ehthumbs.db
-Desktop.ini
-$RECYCLE.BIN/
-
-# Linux
-*~
-.fuse_hidden*
-.directory
-.Trash-*
+# Keep important files (override ignore patterns above)
+!README.md
+!.env.example

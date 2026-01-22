@@ -1,7 +1,7 @@
 import { spawn } from "child_process";
 import path from "path";
 import fs from "fs/promises";
-import { createJobWorkspace } from "../jobs/jobManager.js";
+import  createJobWorkspace  from "../jobs/jobManager.js";
 import { libreOfficeConfig } from "../../config/libreOffice.config.js";
 import * as cheerio from "cheerio";
 
@@ -41,7 +41,7 @@ export const pdfToCsvEngine = {
             
             if (tables.length === 0) {
                 // No tables found, create CSV from text content
-                console.log('No tables found in PDF, creating CSV from text content');
+                // console.log('No tables found in PDF, creating CSV from text content');
                 const outputFileName = path.parse(inputFile.originalname).name + '.csv';
                 const outputPath = path.join(outputDir, outputFileName);
                 

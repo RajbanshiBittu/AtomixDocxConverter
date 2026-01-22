@@ -2,7 +2,7 @@ import { spawn } from "child_process";
 import path from "path";
 import fs from "fs/promises";
 import { libreOfficeConfig } from "../../config/libreOffice.config.js";
-import { createJobWorkspace } from "../jobs/jobManager.js";
+import  createJobWorkspace  from "../jobs/jobManager.js";
 
 export const pdfToHtmlEngine = {
     /**

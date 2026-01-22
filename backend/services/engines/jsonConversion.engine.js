@@ -1,7 +1,8 @@
 import path from "path";
 import fs from "fs/promises";
-import { createJobWorkspace } from "../jobs/jobManager.js";
+import createJobWorkspace from "../jobs/jobManager.js";
 import xlsx from "xlsx";
+import logger from "../../utils/logger.js";
 
 export const jsonConversionEngine = {
     /**
@@ -28,6 +29,7 @@ export const jsonConversionEngine = {
 
         try {
             await fs.access(outputPath);
+            logger.info(`Converted JSON to CSV at ${outputPath}`);
         } catch (error) {
             throw new Error('Conversion failed: Output file not created');
         }
@@ -64,6 +66,7 @@ export const jsonConversionEngine = {
 
         try {
             await fs.access(outputPath);
+            logger.info(`Converted JSON to XLSX at ${outputPath}`);
         } catch (error) {
             throw new Error('Conversion failed: Output file not created');
         }
@@ -95,6 +98,7 @@ export const jsonConversionEngine = {
 
         try {
             await fs.access(outputPath);
+            logger.info(`Converted JSON to HTML at ${outputPath}`);
         } catch (error) {
             throw new Error('Conversion failed: Output file not created');
         }
@@ -126,6 +130,7 @@ export const jsonConversionEngine = {
 
         try {
             await fs.access(outputPath);
+            logger.info(`Converted JSON to Markdown at ${outputPath}`);
         } catch (error) {
             throw new Error('Conversion failed: Output file not created');
         }

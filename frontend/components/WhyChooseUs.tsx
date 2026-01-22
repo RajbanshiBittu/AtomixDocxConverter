@@ -26,7 +26,7 @@ const features = [
   },
   {
     icon: CloudIcon,
-    title: "No File Limits",
+    title: "Wide Format Compatibility",
     description: "Upload large files without artificial size restrictions."
 
   },
@@ -37,7 +37,7 @@ const features = [
   },
   {
     icon: DocumentPlusIcon,
-    title: "Multiple Files",
+    title: "High Conversion Accuracy",
     description: "Batch convert multiple documents in one go.",
 
   },
@@ -62,10 +62,11 @@ export default function WhyChooseUs() {
         {features.map(({ title, description, icon: Icon }) => (
           <article
             key={title}
-            className="p-6 rounded-xl text-black bg-white shadow hover:shadow-2xl transition"
+            className="border-2 border-gray-200 transition-all hover:shadow-lg hover:border-green-500/50 rounded-lg p-6 bg-white"
           >
-            <Icon className="h-10 w-10 text-green-600 mb-4" />
-
+            <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-green-100 dark:bg-green-900/30">
+              <Icon className="h-10 w-10 text-green-600 dark:text-green-400" />
+            </div>
             <h3 className="font-semibold text-lg mb-2">{title}</h3>
 
             <p className="text-sm text-gray-600">{description}</p>

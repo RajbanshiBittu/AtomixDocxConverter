@@ -1,9 +1,10 @@
 import { spawn } from "child_process";
 import path from "path";
 import fs from "fs/promises";
-import { createJobWorkspace } from "../jobs/jobManager.js";
+import  createJobWorkspace  from "../jobs/jobManager.js";
 import { libreOfficeConfig } from "../../config/libreOffice.config.js";
 import HTMLtoDOCX from 'html-to-docx';
+import logger from "../../utils/logger.js";
 
 export const pdfToDocxEngine = {
     async convert(inputFile, mode = 'fast') {
@@ -18,7 +19,7 @@ export const pdfToDocxEngine = {
 
         try {
             // Step 1: Convert PDF to HTML using LibreOffice
-            console.log('Converting PDF to HTML via LibreOffice...');
+            logger.info('Converting PDF to HTML via LibreOffice...');
             await this.convertPdfToHtml(inputPath, job.workingDir);
 
             // Step 2: Read and sanitize HTML
@@ -29,7 +30,7 @@ export const pdfToDocxEngine = {
             try {
                 await fs.access(htmlPath);
                 htmlContent = await fs.readFile(htmlPath, 'utf-8');
-                console.log('HTML file read successfully, size:', htmlContent.length);
+                logger.info('HTML file read successfully, size:', htmlContent.length);
             } catch (htmlError) {
                 throw new Error('HTML conversion failed: Output HTML not created');
             }
@@ -38,13 +39,13 @@ export const pdfToDocxEngine = {
             htmlContent = this.sanitizeHtml(htmlContent);
 
             // Step 4: Convert HTML to DOCX using html-to-docx
-            console.log('Converting HTML to DOCX...');
+            logger.info('Converting HTML to DOCX...');
             const docxBuffer = await HTMLtoDOCX(htmlContent, null, {
                 table: { row: { cantSplit: true } },
                 footer: true,
                 pageNumber: true,
             });
-            console.log('DOCX buffer created, size:', docxBuffer.length);
+            // console.log('DOCX buffer created, size:', docxBuffer.length);
 
             // Step 5: Write DOCX file
             const outputFileName = baseName + '.docx';
@@ -52,7 +53,7 @@ export const pdfToDocxEngine = {
             await fs.writeFile(outputPath, docxBuffer);
 
             const endTime = Date.now();
-            console.log('PDF to DOCX conversion completed successfully');
+            // console.log('PDF to DOCX conversion completed successfully');
 
             // Create manifest
             const manifest = {
@@ -86,7 +87,8 @@ export const pdfToDocxEngine = {
             try {
                 await fs.rm(job.workingDir, { recursive: true, force: true });
             } catch (cleanupError) {
-                console.warn('Cleanup warning:', cleanupError);
+                // console.warn('Cleanup warning:', cleanupError);
+                logger.warn('Cleanup warning:', cleanupError);
             }
 
             return {
@@ -101,7 +103,8 @@ export const pdfToDocxEngine = {
                 await fs.rm(job.workingDir, { recursive: true, force: true });
                 await fs.rm(outputDir, { recursive: true, force: true });
             } catch (cleanupError) {
-                console.warn('Cleanup error:', cleanupError);
+                // console.warn('Cleanup error:', cleanupError);
+                logger.warn('Cleanup error:', cleanupError);
             }
             throw new Error(`PDF to DOCX conversion failed: ${error.message}`);
         }

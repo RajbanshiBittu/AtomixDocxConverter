@@ -416,18 +416,28 @@ export const Features = () => {
                     <h2 className="text-3xl font-extrabold text-gray-900">Everything You Need to Convert Documents</h2>
                     <p className="mt-4 text-lg text-green-500">Convert files between multiple formats with accuracy, speed, and reliability — all in one place</p>
                   </div>
-                    <div className="grid md:grid-cols-5 gap-6">
-                        {visibleFormats.map(({ title, description, icon: Icon }) => (
-                            <article
-                                key={title}
-                                onClick={() => handleCardClick(title)}
-                                className="p-4 rounded-xl bg-white shadow hover:shadow-lg border border-gray-200 transition-all duration-200 cursor-pointer transform hover:-translate-y-1"
-                            >
-                                <Icon className="h-7 w-7 text-green-600 mb-4" />
-                                <h3 className="font-semibold text-lg mb-2 text-black">{title}</h3>
-                                <p className="text-sm text-gray-600">{description}</p>
-                            </article>
-                        ))}
+                  <div className="grid md:grid-cols-5 gap-6">
+                      {visibleFormats.map(({ title, description, icon: Icon }) => (
+                        <article
+                          key={title}
+                          onClick={() => handleCardClick(title)}
+                          className="group hover:shadow-lg transition-all duration-300 hover:border-green-500/50 hover:-translate-y-0.5 cursor-pointer h-full bg-gradient-to-br from-white to-green-50/20 dark:from-gray-900 dark:to-gray-800 p-4 rounded-xl border border-gray-200 shadow"
+                        >
+                          <div className="flex items-start gap-3">
+                            <div className="p-2 rounded-lg bg-gradient-to-br from-green-100 to-emerald-100 dark:from-green-900/30 dark:to-emerald-900/30 group-hover:from-green-200 group-hover:to-emerald-200 dark:group-hover:from-green-800/40 dark:group-hover:to-emerald-800/40 transition-all duration-300 shadow-sm">
+                              <Icon className="h-5 w-5 text-green-600 dark:text-green-400 group-hover:scale-110 transition-transform duration-300" />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <h3 className="font-semibold text-sm mb-1 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors text-black">
+                                {title}
+                              </h3>
+                              <p className="text-xs text-gray-600 line-clamp-2">
+                                {description}
+                              </p>
+                            </div>
+                          </div>
+                        </article>
+                      ))}
                     </div>
 
                     {/* More Features / Show Less Button */}

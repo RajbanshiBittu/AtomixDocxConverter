@@ -1,6 +1,6 @@
 import path from "path";
 import fs from "fs/promises";
-import { createJobWorkspace } from "../jobs/jobManager.js";
+import  createJobWorkspace  from "../jobs/jobManager.js";
 import puppeteer from "puppeteer";
 import HTMLtoDOCX from 'html-to-docx';
 

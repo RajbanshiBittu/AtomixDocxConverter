@@ -1,5 +1,5 @@
 export const libreOfficeConfig = {
-  binary: "soffice",
+  binary: process.env.LIBREOFFICE_BINARY || "soffice",
   baseArgs: [
     "--headless",
     "--nologo",
@@ -7,5 +7,5 @@ export const libreOfficeConfig = {
     "--nodefault",
     "--norestore"
   ],
-  timeoutMs: 30000
+  timeoutMs: parseInt(process.env.LIBREOFFICE_TIMEOUT) || 30000
 };

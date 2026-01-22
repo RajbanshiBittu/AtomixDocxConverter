@@ -1,6 +1,9 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# ============================================
+# FRONTEND .gitignore
+# Next.js + React + TypeScript
+# ============================================
 
-# dependencies
+# Dependencies
 /node_modules
 /.pnp
 .pnp.*
@@ -9,35 +12,48 @@
 !.yarn/plugins
 !.yarn/releases
 !.yarn/versions
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
 
-# testing
+# Testing
 /coverage
+/cypress/videos
+/cypress/screenshots
+/.storybook-static
+/test-results/
+/playwright-report/
+/playwright/.cache/
 
-# next.js
+# Next.js
 /.next/
 /out/
 
-# production
+# Production
 /build
 
-# misc
+# Misc
 .DS_Store
 *.pem
 
-# debug
+# Debug logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 lerna-debug.log*
 
-# env files (can opt-in for committing if needed)
+# Environment files (NEVER commit these)
 .env*
+.env.local
+.env.development
+.env.production
+.env.test
 
-# vercel
+# Vercel
 .vercel
 
-# typescript
+# TypeScript
 *.tsbuildinfo
 next-env.d.ts
 
@@ -48,10 +64,6 @@ next-env.d.ts
 .atom/
 *.swp
 *.swo
-
-# Documentation and reports (optional - comment out to include in repo)
-# DUPLICATE_KEY_FIX_REPORT.md
-# error.md
 *~
 .project
 .classpath
@@ -65,29 +77,27 @@ next-env.d.ts
 Thumbs.db
 ehthumbs.db
 Desktop.ini
-$RECYCLE_BIN/
+$RECYCLE.BIN/
 .Spotlight-V100
 .Trashes
 .directory
 .Trash-*
 .fuse_hidden*
 
-# Documentation (generated reports - keep README.md only)
+# Documentation and study files (NOT needed in production - keep README.md only)
 DUPLICATE_KEY_FIX_REPORT.md
+SEO_IMPLEMENTATION_COMPLETE.md
+SEO_PRODUCTION_REPORT.md
+SEO_QUICK_REFERENCE.md
 error.md
+convert_study.md
 *_REPORT.md
 *_SUMMARY.md
 *_RESULTS.md
+*_IMPLEMENTATION*.md
+*_QUICK*.md
 study.md
 notes.md
-
-# Testing
-/cypress/videos
-/cypress/screenshots
-/.storybook-static
-/test-results/
-/playwright-report/
-/playwright/.cache/
 
 # Temporary files
 *.tmp
@@ -95,27 +105,6 @@ notes.md
 tmp/
 temp/
 
-# Lock files (optional - uncomment if using different package manager)
-# package-lock.json
-# yarn.lock
-# pnpm-lock.yaml
-
-# Local development
-.turbo
-.eslintcache
-
-# Sentry
-.sentryclirc
-
-# Bundle analysis
-.next/analyze/
-
-# PWA files
-**/public/workbox-*
-**/public/worker-*.js
-**/public/sw.js
-**/public/fallback-*.js
-
-# Sitemap
-public/sitemap*.xml
-public/robots.txt
+# Keep important files (override ignore patterns above)
+!README.md
+!.env.example

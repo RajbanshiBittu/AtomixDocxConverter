@@ -2,10 +2,11 @@ import { spawn } from "child_process";
 import path from "path";
 import fs from "fs/promises";
 import { libreOfficeConfig } from "../../config/libreOffice.config.js";
-import { createJobWorkspace } from "../jobs/jobManager.js";
+import createJobWorkspace from "../jobs/jobManager.js";
 import xlsx from "xlsx";
 import * as cheerio from "cheerio";
 import { minimalPptxGenerator } from "./minimalPptx.generator.js";
+import logger from "../../utils/logger.js";
 
 export const docxConversionEngine = {
     /**
@@ -97,6 +98,7 @@ export const docxConversionEngine = {
 
         try {
             await fs.access(txtPath);
+            logger.info(`Extracted text from DOCX to ${txtPath}`);
         } catch (error) {
             throw new Error('Conversion failed: Could not extract text from DOCX');
         }
@@ -149,6 +151,7 @@ export const docxConversionEngine = {
 
         try {
             await fs.access(htmlPath);
+            logger.info(`Converted DOCX to HTML at ${htmlPath}`);
         } catch (error) {
             throw new Error('Conversion failed: Could not convert DOCX to HTML');
         }
@@ -196,6 +199,7 @@ export const docxConversionEngine = {
 
         try {
             await fs.access(outputPath);
+            logger.info(`Converted DOCX to XLSX at ${outputPath}`);
         } catch (error) {
             throw new Error('Conversion failed: Output file not created');
         }

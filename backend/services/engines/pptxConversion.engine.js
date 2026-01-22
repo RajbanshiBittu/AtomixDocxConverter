@@ -3,7 +3,9 @@ import path from "path";
 import fs from "fs/promises";
 import TurndownService from "turndown";
 import { libreOfficeConfig } from "../../config/libreOffice.config.js";
-import { createJobWorkspace } from "../jobs/jobManager.js";
+import  createJobWorkspace  from "../jobs/jobManager.js";
+import logger from "../../utils/logger.js";
+import { Logger } from "winston";
 
 export const pptxConversionEngine = {
     /**
@@ -33,6 +35,7 @@ export const pptxConversionEngine = {
         try {
             await fs.access(htmlPath);
         } catch (error) {
+            logger.error('Conversion failed: Could not convert PPTX to HTML', error);
             throw new Error('Conversion failed: Could not convert PPTX to HTML');
         }
 
@@ -55,6 +58,7 @@ export const pptxConversionEngine = {
         try {
             await fs.access(outputPath);
         } catch (error) {
+            logger.error('Conversion failed: Output file not created', error);
             throw new Error('Conversion failed: Output file not created');
         }
 
@@ -88,6 +92,7 @@ export const pptxConversionEngine = {
         try {
             await fs.access(outputPath);
         } catch (error) {
+            logger.error('Conversion failed: Output file not created', error);
             throw new Error('Conversion failed: Output file not created');
         }
 
@@ -120,6 +125,7 @@ export const pptxConversionEngine = {
         try {
             await fs.access(htmlPath);
         } catch (error) {
+            logger.error('Conversion failed: Could not convert PPTX to HTML', error);
             throw new Error('Conversion failed: Could not convert PPTX to HTML');
         }
 
@@ -144,6 +150,7 @@ export const pptxConversionEngine = {
         try {
             await fs.access(outputPath);
         } catch (error) {
+            logger.error('Conversion failed: Output file not created', error);  
             throw new Error('Conversion failed: Output file not created');
         }
 

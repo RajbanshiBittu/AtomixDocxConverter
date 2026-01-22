@@ -21,7 +21,7 @@ export default function ReadyToConvert({ onShowFeatures }: ReadyToConvertProps) 
                          hover:bg-slate-100 transition shadow">
         Start Converting Now →
       </button> */}
-      <Link href="/features" className="bg-white text-green-600 hover:bg-slate-300 px-8 py-3 rounded-lg font-medium transition-all duration-200 shadow-md active:scale-95">
+      <Link href="/convert" className="bg-white text-green-600 hover:bg-slate-300 px-8 py-3 rounded-lg font-medium transition-all duration-200 shadow-md active:scale-95">
         Start Converting Now →
       </Link>
     </section>

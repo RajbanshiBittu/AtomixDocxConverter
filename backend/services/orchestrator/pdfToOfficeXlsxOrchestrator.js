@@ -1,6 +1,7 @@
 import { pdfToXlsxEngine } from "../engines/pdfToOfficeXlsx.engine.js";
 import path from "path";
 import fs from "fs/promises";
+import logger from "../../utils/logger.js";
 
 export async function runPdfToXlsxConversion({ inputFile, mode = 'structured' }) {
     try {
@@ -17,7 +18,7 @@ export async function runPdfToXlsxConversion({ inputFile, mode = 'structured' })
             metadata: result.manifest
         };
     } catch (error) {
-        console.error('PDF to xlsx orchestrator error:', error);
+        logger.error('PDF to xlsx orchestrator error:', error);
         throw error;
     }
 }

@@ -2,8 +2,10 @@ import path from "path";
 import fs from "fs/promises";
 import * as cheerio from "cheerio";
 import HTMLtoDOCX from 'html-to-docx';
-import { createJobWorkspace } from "../jobs/jobManager.js";
+import createJobWorkspace from "../jobs/jobManager.js";
 import xlsx from "xlsx";
+import logger from "../../utils/logger.js";
+
 
 export const htmlConversionEngine = {
     /**
@@ -33,6 +35,7 @@ export const htmlConversionEngine = {
 
         try {
             await fs.access(outputPath);
+            logger.info(`Converted HTML to DOCX at ${outputPath}`);
         } catch (error) {
             throw new Error('Conversion failed: Output file not created');
         }
@@ -75,6 +78,7 @@ export const htmlConversionEngine = {
 
         try {
             await fs.access(outputPath);
+            logger.info(`Converted HTML to TXT at ${outputPath}`);
         } catch (error) {
             throw new Error('Conversion failed: Output file not created');
         }
@@ -135,6 +139,7 @@ export const htmlConversionEngine = {
 
         try {
             await fs.access(outputPath);
+            logger.info(`Converted HTML to XLSX at ${outputPath}`);
         } catch (error) {
             throw new Error('Conversion failed: Output file not created');
         }
@@ -192,6 +197,7 @@ export const htmlConversionEngine = {
 
         try {
             await fs.access(outputPath);
+            logger.info(`Converted HTML to CSV at ${outputPath}`);
         } catch (error) {
             throw new Error('Conversion failed: Output file not created');
         }
@@ -205,5 +211,6 @@ function escapeCsvField(field) {
     if (str.includes(',') || str.includes('"') || str.includes('\n')) {
         return '"' + str.replace(/"/g, '""') + '"';
     }
+    
     return str;
 }

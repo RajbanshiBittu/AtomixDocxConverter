@@ -4,7 +4,7 @@ import puppeteer from "puppeteer";
 import HTMLtoDOCX from 'html-to-docx';
 import { spawn } from "child_process";
 import { libreOfficeConfig } from "../../config/libreOffice.config.js";
-import { createJobWorkspace } from "../jobs/jobManager.js";
+import createJobWorkspace from "../jobs/jobManager.js";
 import { minimalPptxGenerator } from "./minimalPptx.generator.js";
 
 export const markdownConversionEngine = {

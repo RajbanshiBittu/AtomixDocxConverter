@@ -21,7 +21,7 @@ export function Footer() {
   };
 
   return (
-    <footer className='bg-gray-50 border-t border-gray-200 mt-auto'>
+    <footer className='bg-gradient-to-b from-slate-900 to-slate-950 dark:from-slate-950 dark:to-black text-gray-300 border-t border-slate-800 dark:border-slate-900'>
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12'>
         {/* main footer div  */}
         <div className='grid grid-cols-1 md:grid-cols-4 gap-8 mb-8'>
@@ -32,22 +32,22 @@ export function Footer() {
               </div>
 
               <span className="text-xl font-bold">
-                <span className="text-green-500">Atomix</span><span className="text-gray-700">DocxConverter</span>
+                <span className="text-green-500">Atomix</span><span className="text-white">DocxConverter</span>
               </span>
             </div>
-            <p className="text-gray-600 text-sm max-w-md mb-4">
+            <p className="text-white text-sm max-w-md mb-4">
              Fast, secure, browser-based document conversion. Convert files between multiple formats instantly without losing layout or quality.
             </p>
           </div>
           {/* 2  */}
           <div className="">
-            <h3 className="font-semibold text-gray-900 mb-4">Quick Links</h3>
+            <h3 className="font-semibold text-white mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
                 <Link 
                   href="/" 
                   onClick={handleHomeClick}
-                  className="text-gray-600 hover:text-green-600 text-sm transition-colors duration-200"
+                  className="text-gray-300 hover:text-green-600 text-sm transition-colors duration-200"
                 >
                   Home
                 </Link>
@@ -56,7 +56,16 @@ export function Footer() {
                 <Link 
                   href="/features" 
                   onClick={() => setOpen(false)}
-                  className="text-gray-600 hover:text-green-600 text-sm transition-colors duration-200"
+                  className="text-gray-300 hover:text-green-600 text-sm transition-colors duration-200"
+                >
+                  Features
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="/convert" 
+                  onClick={() => setOpen(false)}
+                  className="text-gray-300 hover:text-green-600 text-sm transition-colors duration-200"
                 >
                   Convert
                 </Link>
@@ -65,25 +74,25 @@ export function Footer() {
           </div>
           {/* 3  */}
           <div className=''>
-            <h3 className="font-semibold text-gray-900 mb-4">Resources</h3>
+            <h3 className="font-semibold text-white mb-4">Resources</h3>
               <ul className="space-y-2">
                 <li>
-                  <a href="#" className="text-gray-600 hover:text-green-600 text-sm transition-colors duration-200">
+                  <a href="#" className="text-gray-300 hover:text-green-600 text-sm transition-colors duration-200">
                     Documentation
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="text-gray-600 hover:text-green-600 text-sm transition-colors duration-200">
+                  <a href="#" className="text-gray-300 hover:text-green-600 text-sm transition-colors duration-200">
                     API Reference
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="text-gray-600 hover:text-green-600 text-sm transition-colors duration-200">
+                  <a href="#" className="text-gray-300 hover:text-green-600 text-sm transition-colors duration-200">
                     Privacy Policy
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="text-gray-600 hover:text-green-600 text-sm transition-colors duration-200">
+                  <a href="#" className="text-gray-300 hover:text-green-600 text-sm transition-colors duration-200">
                     Terms of Service
                   </a>
                 </li>
@@ -93,20 +102,20 @@ export function Footer() {
         {/* divide div  */}
         <div className="pt-8 border-t border-gray-200">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-gray-600 text-sm text-center md:text-left">
+            <p className="text-gray-300 text-sm text-center md:text-left">
               © {currentYear} Atomix Shortify. All rights reserved.
             </p>
             <div className="flex space-x-4">
-              <Link href="https://x.com/" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-green-600 transition-colors duration-200" aria-label="Twitter">
+              <Link href="https://x.com/" target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-gray-800 hover:bg-green-600 text-gray-400 hover:text-white transition-all duration-300" aria-label="Twitter">
                 <Twitter />
               </Link>
-              <Link href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-green-600 transition-colors duration-200" aria-label="LinkedIn">
+              <Link href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-gray-800 hover:bg-green-600 text-gray-400 hover:text-white transition-all duration-300" aria-label="LinkedIn">
                 <Linkedin />
               </Link>
-              <Link href="https://facebook.com/" target='_blank' rel="noopener noreferrer" className="text-gray-500 hover:text-green-600 transition-colors duration-200" aria-label="Facebook">
+              <Link href="https://facebook.com/" target='_blank' rel="noopener noreferrer" className="p-2 rounded-lg bg-gray-800 hover:bg-green-600 text-gray-400 hover:text-white transition-all duration-300" aria-label="Facebook">
                 <Facebook />
               </Link>
-              <Link href="mailto:contact@atomixshortify.com" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-green-600 transition-colors duration-200" aria-label="Mail">
+              <Link href="mailto:contact@atomixshortify.com" target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg bg-gray-800 hover:bg-green-600 text-gray-400 hover:text-white transition-all duration-300" aria-label="Mail">
                 <Mail />
               </Link>
             </div>

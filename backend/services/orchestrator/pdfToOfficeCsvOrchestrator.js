@@ -1,6 +1,7 @@
 import { pdfToCsvEngine } from "../engines/pdfToOfficeCsv.engine.js";
 import path from "path";
 import fs from "fs/promises";
+import logger from "../../utils/logger.js";
 
 export async function runPdfToCsvConversion({ inputFile, mode = 'structured' }) {
     try {
@@ -17,7 +18,7 @@ export async function runPdfToCsvConversion({ inputFile, mode = 'structured' }) 
             metadata: result.manifest
         };
     } catch (error) {
-        console.error('PDF to csv orchestrator error:', error);
+        logger.error('PDF to csv orchestrator error:', error);
         throw error;
     }
 }

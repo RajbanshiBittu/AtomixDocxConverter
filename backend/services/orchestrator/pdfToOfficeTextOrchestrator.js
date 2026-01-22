@@ -1,6 +1,8 @@
 import { pdfToTextEngine } from "../engines/pdfToOfficeText.engine.js";
 import path from "path";
 import fs from "fs/promises";
+import logger from "../../utils/logger.js";
+
 
 export async function runPdfToTextConversion({ inputFile, mode = 'fast' }) {
     try {
@@ -17,7 +19,7 @@ export async function runPdfToTextConversion({ inputFile, mode = 'fast' }) {
             metadata: result.manifest
         };
     } catch (error) {
-        console.error('PDF to text orchestrator error:', error);
+        logger.error('PDF to text orchestrator error:', error);
         throw error;
     }
 }

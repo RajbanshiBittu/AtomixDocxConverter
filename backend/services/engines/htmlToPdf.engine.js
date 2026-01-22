@@ -1,7 +1,8 @@
 import puppeteer from "puppeteer";
 import path from "path";
 import fs from "fs/promises";
-import { createJobWorkspace } from "../jobs/jobManager.js";
+import createJobWorkspace from "../jobs/jobManager.js";
+import logger from "../../utils/logger.js";
 
 export const htmlToPdfEngine = {
     async convert(inputFile) {
@@ -41,6 +42,7 @@ export const htmlToPdfEngine = {
             // Verify output file exists
             try {
                 await fs.access(outputPath);
+                logger.info(`Converted HTML to PDF at ${outputPath}`);
             } catch (error) {
                 throw new Error(`Conversion failed: Output file not created. The HTML content may be invalid or unsupported.`);
             }

@@ -1,53 +1,160 @@
-# Dependencies
+# ============================================
+# ROOT .gitignore
+# AtomixDocxConverter - Document Conversion API
+# ============================================
+
+# Dependencies (all node_modules across the project)
 node_modules/
 */node_modules/
+**/node_modules/
 
-# Environment variables
+# Environment variables (NEVER commit these - contain secrets)
 .env
 .env.local
 .env.development
 .env.production
+.env.test
 */.env
+**/.env
+*/.env.local
+**/.env.production
 
-# Storage and temporary files
-backend/storage/uploads/
-backend/storage/outputs/
-backend/storage/working/
+# Backend-specific
+backend/storage/
+backend/uploads/
+backend/outputs/
+backend/working/
+backend/logs/
+backend/*.log
+
+# Backend test files (NOT needed in production)
+backend/test-files/
 backend/test-outputs/
 backend/test-outputs-all-routes/
+backend/test-all-conversions.js
+backend/manual-test-all.sh
+backend/test-all-routes.sh
+backend/test-comprehensive-conversions.sh
+backend/test-pdf-conversions.sh
+backend/route-test-results.txt
+backend/manual_test_results.txt
+backend/final-test-results.log
+backend/test-output.log
+backend/test-output-with-pptx.log
 
-# IDE
+# Backend documentation (NOT needed in production - keep README.md only)
+backend/COMPREHENSIVE_IMPLEMENTATION.md
+backend/FINAL_TEST_RESULTS.md
+backend/IMPLEMENTATION_COMPLETE.md
+backend/IMPLEMENTATION_FINAL_SUMMARY.md
+backend/IMPLEMENTATION_SUMMARY.md
+backend/PPTX_ROUTES_FIX_REPORT.md
+backend/QUICK_REFERENCE.md
+backend/ROUTE_TESTING_REPORT.md
+backend/TEST_REPORT.md
+backend/TEST_RESULTS.md
+backend/pdfToDocx.md
+backend/study.md
+
+# Frontend-specific
+frontend/.next/
+frontend/out/
+frontend/build/
+frontend/.env.local
+frontend/.env.production
+
+# Frontend documentation (NOT needed in production - keep README.md only)
+frontend/DUPLICATE_KEY_FIX_REPORT.md
+frontend/SEO_IMPLEMENTATION_COMPLETE.md
+frontend/SEO_PRODUCTION_REPORT.md
+frontend/SEO_QUICK_REFERENCE.md
+frontend/error.md
+frontend/convert_study.md
+
+# Root-level documentation and reports (NOT needed in production)
+CONVERSION_ROUTES_COMPARISON.md
+DEPLOYMENT_VALIDATION_REPORT.md
+FINAL_COMPREHENSIVE_TEST_REPORT.md
+PRODUCTION_READINESS_AUDIT_REPORT.md
+PRODUCTION_READINESS_AUDIT_REPORT_UPDATED.md
+PROFESSIONAL_QA_REPORT.md
+PROGRESSIVE_DISCLOSURE_IMPLEMENTATION.md
+features.md
+*_REPORT.md
+*_AUDIT*.md
+*_VALIDATION*.md
+*_TEST*.md
+*_IMPLEMENTATION*.md
+*_COMPARISON*.md
+
+# IDE and editors
 .vscode/
 .idea/
+*.sublime-*
+.atom/
 *.swp
 *.swo
-.DS_Store
+*~
+.project
+.classpath
+.settings/
+*.iml
 
-# Logs
+# OS files
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.Spotlight-V100
+.Trashes
+.directory
+.Trash-*
+.fuse_hidden*
+
+# Logs (all log files across the project)
 *.log
+logs/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+lerna-debug.log*
+pnpm-debug.log*
 
 # Build outputs
 dist/
 build/
 .next/
 out/
+coverage/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+.cache/
+
+# Lock files (optional - keep package-lock.json for consistency)
+# package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
 
 # Testing
 coverage/
+.nyc_output/
 
-# Documentation and test files
-CONVERSION_ROUTES_COMPARISON.md
-FINAL_COMPREHENSIVE_TEST_REPORT.md
-PROFESSIONAL_QA_REPORT.md
-PROGRESSIVE_DISCLOSURE_IMPLEMENTATION.md
-backend/FINAL_TEST_RESULTS.md
-backend/IMPLEMENTATION_COMPLETE.md
-backend/IMPLEMENTATION_SUMMARY.md
-backend/TEST_RESULTS.md
-backend/pdfToDocx.md
-backend/test-all-routes.sh
-backend/test-comprehensive-conversions.sh
-backend/test-pdf-conversions.sh
+# Keep important files (override ignore patterns above)
+!README.md
+!backend/README.md
+!frontend/README.md
+!.env.example
+!backend/.env.example
+!frontend/.env.example

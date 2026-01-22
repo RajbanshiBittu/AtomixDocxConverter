@@ -42,6 +42,12 @@ export default function Navbar() {
             href="/features" 
             className="text-gray-700 hover:text-green-600 font-medium transition-colors duration-200"
           >
+            Features
+          </Link>
+          <Link
+            href="/convert" 
+            className="text-gray-700 hover:text-green-600 font-medium transition-colors duration-200"
+          >
             Convert
           </Link>
         </div>
@@ -49,7 +55,7 @@ export default function Navbar() {
         {/* Desktop CTA */}
         <div className="hidden md:flex items-center space-x-4">
           <Link 
-            href="/features" 
+            href="/convert" 
             className="bg-green-500 hover:bg-green-600 text-white px-5 py-2 rounded-lg font-medium transition-all duration-200 shadow-md hover:shadow-lg active:scale-95"
           >
             Convert Now
@@ -81,10 +87,17 @@ export default function Navbar() {
               onClick={() => setOpen(false)}
               className="hover:text-green-500"
             >
+              Features
+            </Link>
+            <Link 
+              href="/convert" 
+              onClick={() => setOpen(false)}
+              className="hover:text-green-500"
+            >
               Convert
             </Link>
             <Link
-              href="/features"
+              href="/convert"
               onClick={() => setOpen(false)}
               className="bg-green-500 text-white px-8 py-3 rounded-lg
                          hover:bg-green-600 transition shadow"

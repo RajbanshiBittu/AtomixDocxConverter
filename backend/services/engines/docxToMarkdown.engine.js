@@ -3,7 +3,8 @@ import path from "path";
 import fs from "fs/promises";
 import TurndownService from "turndown";
 import { libreOfficeConfig } from "../../config/libreOffice.config.js";
-import { createJobWorkspace } from "../jobs/jobManager.js";
+import createJobWorkspace from "../jobs/jobManager.js";
+import logger from "../../utils/logger.js";
 
 export const docxToMarkdownEngine = {
     async convert(inputFile) {
@@ -29,6 +30,7 @@ export const docxToMarkdownEngine = {
         // Verify HTML was created
         try {
             await fs.access(tempHtmlPath);
+            logger.info(`Converted DOCX to HTML at ${tempHtmlPath}`);
         } catch (error) {
             throw new Error(`Conversion failed: Could not convert DOCX to HTML. The input file may be corrupted or in an unsupported format.`);
         }
@@ -54,6 +56,7 @@ export const docxToMarkdownEngine = {
         // Verify output file exists
         try {
             await fs.access(outputPath);
+            logger.info(`Converted DOCX to Markdown at ${outputPath}`);
         } catch (error) {
             throw new Error(`Conversion failed: Output file not created.`);
         }
@@ -74,6 +77,11 @@ function executeLibreOffice(args) {
         process.on("exit", code => {
             clearTimeout(timer);
             code === 0 ? resolve() : reject(new Error("LibreOffice conversion failed"));
+        });
+
+        process.on("error", err => {
+            clearTimeout(timer);
+            reject(err);
         });
     });
 }

@@ -1,10 +1,12 @@
 import fs from "fs/promises";
 import path from "path";
 import { v4 as uuid } from "uuid";
+import { STORAGE_PATHS, resolveStoragePath } from '../../config/constants.js';
 
-const BASE = "storage";
 
-export async function createJobWorkspace(filename) {
+const BASE = resolveStoragePath(STORAGE_PATHS.BASE);
+
+const createJobWorkspace = async (filename) => {
     const jobId = uuid();
 
     const workingDir = path.join(BASE, "working", jobId);
@@ -15,3 +17,5 @@ export async function createJobWorkspace(filename) {
 
     return { jobId, workingDir, outputDir };
 }
+
+export default createJobWorkspace;

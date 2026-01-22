@@ -1,8 +1,9 @@
 import path from "path";
 import fs from "fs/promises";
 import puppeteer from "puppeteer";
-import { createJobWorkspace } from "../jobs/jobManager.js";
+import createJobWorkspace from "../jobs/jobManager.js";
 import xlsx from "xlsx";
+import logger from "../../utils/logger.js";
 
 export const csvConversionEngine = {
     /**
@@ -19,7 +20,8 @@ export const csvConversionEngine = {
         
         // Parse CSV
         const rows = parseCsv(csvContent);
-        
+        logger.info(`Parsed ${rows.length} rows from CSV`);
+
         // Convert to XML
         const xmlContent = csvToXml(rows);
 
@@ -55,6 +57,7 @@ export const csvConversionEngine = {
         
         // Convert to HTML
         const htmlContent = csvToHtml(rows);
+        logger.info(`Converted CSV to HTML with ${rows.length} rows`);
 
         const parsed = path.parse(inputFile.originalname);
         const outputFile = parsed.name + ".html";
@@ -88,6 +91,7 @@ export const csvConversionEngine = {
         
         // Convert to HTML
         const htmlContent = csvToHtml(rows);
+        logger.info(`Converted CSV to HTML with ${rows.length} rows`);
 
         // Use Puppeteer to generate PDF
         const browser = await puppeteer.launch({
@@ -135,6 +139,7 @@ export const csvConversionEngine = {
         
         // Parse CSV and convert to tab-separated text
         const rows = parseCsv(csvContent);
+        logger.info(`Converted CSV to text with ${rows.length} rows`);
         const txtContent = rows.map(row => row.join('\t')).join('\n');
 
         const parsed = path.parse(inputFile.originalname);

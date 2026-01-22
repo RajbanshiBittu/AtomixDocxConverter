@@ -1,10 +1,11 @@
 import { spawn } from "child_process";
 import path from "path";
 import fs from "fs/promises";
-import { createJobWorkspace } from "../jobs/jobManager.js";
+import  createJobWorkspace  from "../jobs/jobManager.js";
 import { libreOfficeConfig } from "../../config/libreOffice.config.js";
 import * as cheerio from "cheerio";
 import ExcelJS from "exceljs";
+import logger from "../../utils/logger.js";
 
 export const pdfToXlsxEngine = {
     async convert(inputFile, mode = 'structured') {
@@ -139,7 +140,7 @@ export const pdfToXlsxEngine = {
             try {
                 await fs.rm(job.workingDir, { recursive: true, force: true });
             } catch (cleanupError) {
-                console.warn('Cleanup warning:', cleanupError);
+                logger.warn('Cleanup warning:', cleanupError);
             }
 
             return {
@@ -154,7 +155,7 @@ export const pdfToXlsxEngine = {
                 await fs.rm(job.workingDir, { recursive: true, force: true });
                 await fs.rm(outputDir, { recursive: true, force: true });
             } catch (cleanupError) {
-                console.warn('Cleanup error:', cleanupError);
+                logger.warn('Cleanup error:', cleanupError);
             }
             throw new Error(`PDF to XLSX conversion failed: ${error.message}`);
         }

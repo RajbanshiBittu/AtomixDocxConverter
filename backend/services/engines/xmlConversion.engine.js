@@ -1,7 +1,7 @@
 import path from "path";
 import fs from "fs/promises";
 import puppeteer from "puppeteer";
-import { createJobWorkspace } from "../jobs/jobManager.js";
+import createJobWorkspace  from "../jobs/jobManager.js";
 import xlsx from "xlsx";
 
 export const xmlConversionEngine = {

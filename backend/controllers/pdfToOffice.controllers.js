@@ -7,6 +7,9 @@ import { AppError } from "../utils/errorHandler.js";
 import { HTTP_STATUS, ERROR_MESSAGES } from "../config/constants.js";
 import path from "path";
 import { validateFileType } from "../utils/fileValidator.js";
+import logger from "../utils/logger.js";
+import { sanitizeFilename } from "../utils/sanitizer.js";
+
 
 export async function pdfToTextController(req, res, next) {
     try {
@@ -16,17 +19,19 @@ export async function pdfToTextController(req, res, next) {
 
         // Validate file type
         validateFileType(req.file, 'pdf-to-text');
+        const sanitizedName = sanitizeFilename(req.file.originalname);
 
         const result = await runPdfToTextConversion({
             inputFile: req.file,
             mode: req.query.mode || 'fast'
         });
 
-        res.setHeader('Content-Disposition', `attachment; filename="${path.basename(result.outputPath)}"`);
+        res.setHeader('Content-Disposition', `attachment; filename="${sanitizedName.replace(/\.pdf$/i, '.txt')}"`);
 
         return res.status(HTTP_STATUS.OK).download(result.outputPath);
     } catch (error) {
-        console.error('PDF to text conversion error:', error);
+        // console.error('PDF to text conversion error:', error);
+        logger.error('PDF to text conversion error:', error);
         if (error.isOperational) {
             return next(error);
         }
@@ -42,17 +47,19 @@ export async function pdfToDocxController(req, res, next) {
 
         // Validate file type
         validateFileType(req.file, 'pdf-to-docx');
+        const sanitizedName = sanitizeFilename(req.file.originalname);
 
         const result = await runPdfToDocxConversion({
             inputFile: req.file,
             mode: req.query.mode || 'fast'
         });
 
-        res.setHeader('Content-Disposition', `attachment; filename="${path.basename(result.outputPath)}"`);
+        res.setHeader('Content-Disposition', `attachment; filename="${sanitizedName.replace(/\.pdf$/i, '.docx')}"`);
 
         return res.status(HTTP_STATUS.OK).download(result.outputPath);
     } catch (error) {
-        console.error('PDF to docx conversion error:', error);
+        // console.error('PDF to docx conversion error:', error);
+        logger.error('PDF to docx conversion error:', error);
         if (error.isOperational) {
             return next(error);
         }
@@ -68,17 +75,18 @@ export async function pdfToXlsxController(req, res, next) {
 
         // Validate file type
         validateFileType(req.file, 'pdf-to-xlsx');
-
+        const sanitizedName = sanitizeFilename(req.file.originalname);
         const result = await runPdfToXlsxConversion({
             inputFile: req.file,
             mode: req.query.mode || 'structured'
         });
 
-        res.setHeader('Content-Disposition', `attachment; filename="${path.basename(result.outputPath)}"`);
+        res.setHeader('Content-Disposition', `attachment; filename="${sanitizedName.replace(/\.pdf$/i, '.xlsx')}"`);
 
         return res.status(HTTP_STATUS.OK).download(result.outputPath);
     } catch (error) {
-        console.error('PDF to xlsx conversion error:', error);
+        // console.error('PDF to xlsx conversion error:', error);
+        logger.error('PDF to xlsx conversion error:', error);
         if (error.isOperational) {
             return next(error);
         }
@@ -95,16 +103,19 @@ export async function pdfToJsonController(req, res, next) {
         // Validate file type
         validateFileType(req.file, 'pdf-to-json');
 
+        const sanitizedName = sanitizeFilename(req.file.originalname);
+
         const result = await runPdfToJsonConversion({
             inputFile: req.file,
             mode: req.query.mode || 'structured'
         });
 
-        res.setHeader('Content-Disposition', `attachment; filename="${path.basename(result.outputPath)}"`);
+        res.setHeader('Content-Disposition', `attachment; filename="${sanitizedName.replace(/\.pdf$/i, '.json')}"`);
 
         return res.status(HTTP_STATUS.OK).download(result.outputPath);
     } catch (error) {
-        console.error('PDF to json conversion error:', error);
+        // console.error('PDF to json conversion error:', error);
+        logger.error('PDF to json conversion error:', error);
         if (error.isOperational) {
             return next(error);
         }
@@ -120,17 +131,18 @@ export async function pdfToCsvController(req, res, next) {
 
         // Validate file type
         validateFileType(req.file, 'pdf-to-csv');
-
+        const sanitizedName = sanitizeFilename(req.file.originalname);
         const result = await runPdfToCsvConversion({
             inputFile: req.file,
             mode: req.query.mode || 'structured'
         });
 
-        res.setHeader('Content-Disposition', `attachment; filename="${path.basename(result.outputPath)}"`);
+        res.setHeader('Content-Disposition', `attachment; filename="${sanitizedName.replace(/\.pdf$/i, '.csv')}"`);
 
         return res.status(HTTP_STATUS.OK).download(result.outputPath);
     } catch (error) {
-        console.error('PDF to csv conversion error:', error);
+        // console.error('PDF to csv conversion error:', error);
+        logger.error('PDF to csv conversion error:', error);
         if (error.isOperational) {
             return next(error);
         }

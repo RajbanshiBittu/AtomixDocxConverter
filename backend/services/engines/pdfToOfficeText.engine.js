@@ -1,9 +1,10 @@
 import { spawn } from "child_process";
 import path from "path";
 import fs from "fs/promises";
-import { createJobWorkspace } from "../jobs/jobManager.js";
+import createJobWorkspace from "../jobs/jobManager.js";
 import { libreOfficeConfig } from "../../config/libreOffice.config.js";
 import { createRequire } from 'module';
+import logger from "../../utils/logger.js";
 
 const require = createRequire(import.meta.url);
 const pdfParseModule = require('pdf-parse');
@@ -39,7 +40,7 @@ export const pdfToTextEngine = {
                         throw new Error('Insufficient text extracted');
                     }
                 } catch (parseError) {
-                    console.log('PDF-parse failed, trying LibreOffice method:', parseError.message);
+                    logger.info('PDF-parse failed, trying LibreOffice method:', parseError.message);
                 }
             }
 
@@ -64,7 +65,7 @@ export const pdfToTextEngine = {
                         .trim();
                     method = 'libreoffice-html';
                 } catch (htmlError) {
-                    console.error('HTML conversion failed:', htmlError);
+                    logger.error('HTML conversion failed:', htmlError);
                 }
             }
 
@@ -118,7 +119,7 @@ export const pdfToTextEngine = {
             try {
                 await fs.rm(job.workingDir, { recursive: true, force: true });
             } catch (cleanupError) {
-                console.warn('Cleanup warning:', cleanupError);
+                logger.warn('Cleanup warning:', cleanupError);
             }
 
             return {
@@ -133,7 +134,7 @@ export const pdfToTextEngine = {
                 await fs.rm(job.workingDir, { recursive: true, force: true });
                 await fs.rm(outputDir, { recursive: true, force: true });
             } catch (cleanupError) {
-                console.warn('Cleanup error:', cleanupError);
+                logger.warn('Cleanup error:', cleanupError);
             }
             throw new Error(`PDF to text conversion failed: ${error.message}`);
         }

@@ -4,7 +4,8 @@ import { AppError } from "../utils/errorHandler.js";
 import { HTTP_STATUS, ERROR_MESSAGES } from "../config/constants.js";
 import path from "path";
 import { validateFileType } from "../utils/fileValidator.js";
-
+import logger from "../utils/logger.js";
+import { sanitizeFilename } from "../utils/sanitizer.js";
 
 
 export async function docxToPdfController (req, res, next) {
@@ -12,20 +13,21 @@ export async function docxToPdfController (req, res, next) {
         if(!req.file) {
             return next(new AppError(ERROR_MESSAGES.FILE_NOT_FOUND, HTTP_STATUS.BAD_REQUEST));
         }
-
         // Validate file type
         validateFileType(req.file, 'docx-to-pdf');
+
+        const sanitizedName = sanitizeFilename(req.file.originalname);
 
         const result = await runConversion({
             inputFile: req.file,
             targetFormat: 'pdf'
         })
-
-        res.setHeader('Content-Disposition', `attachment; filename="${path.basename(result.outputPath)}"`);
+        res.setHeader('Content-Disposition', `attachment; filename="${sanitizedName.replace(/\.docx$/i, '.pdf')}"`);
 
         return res.status(HTTP_STATUS.OK).download(result.outputPath);
     } catch (error) {
-        console.error('docx to pdf conversion error:', error);
+        // console.error('docx to pdf conversion error:', error);
+        logger.error('docx to pdf conversion error:', error);
         if (error.isOperational) {
             return next(error);
         }
@@ -42,16 +44,19 @@ export async function xlsxToPdfController (req, res, next) {
         // Validate file type
         validateFileType(req.file, 'xlsx-to-pdf');
 
+        const sanitizedName = sanitizeFilename(req.file.originalname);
+
         const result = await runConversion({
             inputFile: req.file,
             targetFormat: 'pdf'
         })
 
-        res.setHeader('Content-Disposition', `attachment; filename="${path.basename(result.outputPath)}"`);
+        res.setHeader('Content-Disposition', `attachment; filename="${sanitizedName.replace(/\.xlsx$/i, '.pdf')}"`);
 
         return res.status(HTTP_STATUS.OK).download(result.outputPath);
     } catch (error) {
-        console.error('xlsx to pdf conversion error:', error);
+        // console.error('xlsx to pdf conversion error:', error);
+        logger.error('xlsx to pdf conversion error:', error);
         if (error.isOperational) {
             return next(error);
         }
@@ -67,17 +72,19 @@ export async function pptxToPdfController (req, res, next) {
 
         // Validate file type
         validateFileType(req.file, 'pptx-to-pdf');
+        const sanitizedName = sanitizeFilename(req.file.originalname);
 
         const result = await runConversion({
             inputFile: req.file,
             targetFormat: 'pdf'
         })
 
-        res.setHeader('Content-Disposition', `attachment; filename="${path.basename(result.outputPath)}"`);
+        res.setHeader('Content-Disposition', `attachment; filename="${sanitizedName.replace(/\.pptx$/i, '.pdf')}"`);
 
         return res.status(HTTP_STATUS.OK).download(result.outputPath);
     } catch (error) {
-        console.error('pptx to pdf conversion error:', error);
+        // console.error('pptx to pdf conversion error:', error);
+        logger.error('pptx to pdf conversion error:', error);
         if (error.isOperational) {
             return next(error);
         }
@@ -93,17 +100,19 @@ export async function odsToPdfController (req, res, next) {
 
         // Validate file type
         validateFileType(req.file, 'ods-to-pdf');
+        const sanitizedName = sanitizeFilename(req.file.originalname);
 
         const result = await runConversion({
             inputFile: req.file,
             targetFormat: 'pdf'
         })
 
-        res.setHeader('Content-Disposition', `attachment; filename="${path.basename(result.outputPath)}"`);
+        res.setHeader('Content-Disposition', `attachment; filename="${sanitizedName.replace(/\.ods$/i, '.pdf')}"`);
 
         return res.status(HTTP_STATUS.OK).download(result.outputPath);
     } catch (error) {
-        console.error('ods to pdf conversion error:', error);
+        // console.error('ods to pdf conversion error:', error);
+        logger.error('ods to pdf conversion error:', error);
         if (error.isOperational) {
             return next(error);
         }
@@ -120,16 +129,19 @@ export async function odtToPdfController (req, res, next) {
         // Validate file type
         validateFileType(req.file, 'odt-to-pdf');
 
+        const sanitizedName = sanitizeFilename(req.file.originalname);
+
         const result = await runConversion({
             inputFile: req.file,
             targetFormat: 'pdf'
         })
 
-        res.setHeader('Content-Disposition', `attachment; filename="${path.basename(result.outputPath)}"`);
+        res.setHeader('Content-Disposition', `attachment; filename="${sanitizedName.replace(/\.odt$/i, '.pdf')}"`);
 
         return res.status(HTTP_STATUS.OK).download(result.outputPath);
     } catch (error) {
-        console.error('odt to pdf conversion error:', error);
+        // console.error('odt to pdf conversion error:', error);
+        logger.error('odt to pdf conversion error:', error);
         if (error.isOperational) {
             return next(error);
         }
@@ -145,16 +157,18 @@ export async function htmlToPdfController (req, res, next) {
 
         // Validate file type
         validateFileType(req.file, 'html-to-pdf');
+        const sanitizedName = sanitizeFilename(req.file.originalname);
 
         const result = await runHtmlToPdfConversion({
             inputFile: req.file
         })
 
-        res.setHeader('Content-Disposition', `attachment; filename="${path.basename(result.outputPath)}"`);
+        res.setHeader('Content-Disposition', `attachment; filename="${sanitizedName.replace(/\.html$/i, '.pdf')}"`);
 
         return res.status(HTTP_STATUS.OK).download(result.outputPath);
     } catch (error) {
-        console.error('html to pdf conversion error:', error);
+        // console.error('html to pdf conversion error:', error);
+        logger.error('html to pdf conversion error:', error);
         if (error.isOperational) {
             return next(error);
         }

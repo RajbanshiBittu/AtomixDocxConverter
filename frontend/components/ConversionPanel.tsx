@@ -44,7 +44,11 @@ export default function ConversionPanel({ conversionType = "docx to pdf" }: Conv
   };
 
   const getApiEndpoint = (type: string): string => {
-    const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5050/api/v1';
+    const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+
+    if (!baseUrl) {
+      throw new Error('NEXT_PUBLIC_API_URL environment variable is required');
+    }
     
     // Map conversion type to API endpoint
     const endpointMap: { [key: string]: string } = {
@@ -167,49 +171,69 @@ export default function ConversionPanel({ conversionType = "docx to pdf" }: Conv
 
     setConverting(true);
     setError(null);
+    
+    const maxRetries = 3;
+    let retryCount = 0;
 
-    try {
-      const formData = new FormData();
-      formData.append('file', file);
+    while (retryCount < maxRetries) {
+      try {
+        const formData = new FormData();
+        formData.append('file', file);
 
-      const endpoint = getApiEndpoint(conversionType);
-      
-      const response = await fetch(endpoint, {
-        method: 'POST',
-        body: formData,
-      });
+        const endpoint = getApiEndpoint(conversionType);
+        
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 300000); // 5 min timeout
 
-      if (!response.ok) {
-        // Try to parse JSON error from backend
-        try {
-          const errorData = await response.json();
-          throw new Error(errorData?.error?.message || errorData?.message || response.statusText);
-        } catch (jsonError) {
-          // If JSON parsing fails, use status text
-          throw new Error(response.statusText || 'Conversion failed');
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          body: formData,
+          signal: controller.signal
+        });
+
+        clearTimeout(timeoutId);
+
+        if (!response.ok) {
+          const errorData = await response.json().catch(() => ({}));
+          throw new Error(
+            errorData?.error?.message || 
+            errorData?.message || 
+            `Conversion failed: ${response.statusText}`
+          );
+        }
+
+        const blob = await response.blob();
+        const contentDisposition = response.headers.get('content-disposition');
+        let filename = `${file.name.split('.')[0]}.${conversionType.split('to')[1].trim()}`;
+        
+        if (contentDisposition) {
+          const matches = /filename="([^"]+)"/.exec(contentDisposition);
+          if (matches) filename = matches[1];
+        }
+
+        setConvertedFile({ blob, filename });
+        setError(null);
+        break; // Success, exit retry loop
+
+      } catch (err: any) {
+        retryCount++;
+        
+        if (err.name === 'AbortError') {
+          setError('Conversion timeout - file may be too large. Please try a smaller file.');
+          break;
+        }
+        
+        if (retryCount >= maxRetries) {
+          setError(err.message || 'Conversion failed after multiple attempts');
+        } else {
+          // Wait before retry (exponential backoff)
+          await new Promise(resolve => setTimeout(resolve, 1000 * retryCount));
+        }
+      } finally {
+        if (retryCount >= maxRetries || error === null) {
+          setConverting(false);
         }
       }
-
-      // Store the converted file
-      const blob = await response.blob();
-      
-      // Try to get filename from Content-Disposition header
-      const contentDisposition = response.headers.get('content-disposition');
-      let filename = `${file.name.split('.')[0]}.${conversionType.split('to')[1].trim()}`;
-      
-      if (contentDisposition) {
-        const filenameMatch = contentDisposition.match(/filename="?([^"]+)"?/);
-        if (filenameMatch) {
-          filename = filenameMatch[1];
-        }
-      }
-      
-      // Store the converted file for download button
-      setConvertedFile({ blob, filename });
-      setConverting(false);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Conversion failed');
-      setConverting(false);
     }
   };
 
@@ -239,12 +263,12 @@ export default function ConversionPanel({ conversionType = "docx to pdf" }: Conv
         <h2 className="text-3xl font-bold text-center mb-2 text-gray-800">
           Convert Your Document
         </h2>
-        <p className="text-center text-gray-600 mb-8">
+        <p className="text-center text-green-600 mb-8">
           {conversionType.toUpperCase()}
         </p>
 
         <div 
-          className={`border-2 border-dashed rounded-lg p-16 text-center transition-all ${
+          className={`border-2 border-dashed rounded-lg p-16 text-center transition-all hover:bg-green-300 ${
             dragActive ? 'border-green-500 bg-green-50' : 'border-gray-300 bg-gray-50'
           }`}
           onDragEnter={handleDrag}
