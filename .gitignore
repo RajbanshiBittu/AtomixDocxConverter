@@ -155,6 +155,3 @@ coverage/
 !README.md
 !backend/README.md
 !frontend/README.md
-!.env.example
-!backend/.env.example
-!frontend/.env.example

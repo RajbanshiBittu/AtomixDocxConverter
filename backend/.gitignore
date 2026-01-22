@@ -138,4 +138,3 @@ pids/
 
 # Keep important files (override ignore patterns above)
 !README.md
-!.env.example
